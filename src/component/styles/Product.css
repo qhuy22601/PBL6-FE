@@ -1,0 +1,41 @@
+
+.prd{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 20px;
+}
+.prd-name{
+    width: fit-content;
+}
+.prd-img{
+    width: fit-content;
+}
+.prd-size{
+    width: fit-content;
+    display: flex;
+    border: 1px solid #0000;
+}
+.prd-price{
+    width: fit-content;
+}
+.prd-color{
+    width: fit-content;
+    display: flex;
+}
+
+.prd-desc{
+    width: 400px;
+}
+.size{
+    display: flex;
+    width: 38px;
+    border: 1px solid #0000;
+    justify-content: center;
+    height: 18px;
+    text-align: center;
+}
+.na{
+    width: fit-content;
+}

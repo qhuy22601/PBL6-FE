@@ -1,0 +1,24 @@
+.each-slide-effect>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    height: 280px;
+    width: 280px;
+}
+
+.each-slide-effect span {
+    padding: 20px;
+    font-size: 20px;
+    background: #efefef;
+    text-align: center;
+    display: none;
+}
+.slide{
+    width: 280px;
+    height: 280px;
+}
+.react-slideshow-container {
+    display: flex;
+    margin:auto;
+}

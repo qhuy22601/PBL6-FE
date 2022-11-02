@@ -1,0 +1,23 @@
+[
+    {
+        "id":"1",
+        "name":"Giao hàng tiết kiệm",
+        "price":"20000",
+        "image":"https://data.timvieclam.asia/quangngaijob/companies/2020/10/09/origin_2020-10-09-160220613452219giaohangtk.png",
+        "thời gian":"5-6 ngày"
+    },
+    {
+        "id":"2",
+        "name":"Express",
+        "price":"40000",
+        "image":"https://is5-ssl.mzstatic.com/image/thumb/Purple122/v4/b7/b0/ec/b7b0ec33-a65d-efd6-f114-a1089b6273ff/AppIcon-0-0-1x_U007emarketing-0-0-0-5-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg",
+        "thời gian":"3-4 ngày"
+    },
+    {
+        "id":"3",
+        "name":"Viettel Post",
+        "price":"60000",
+        "image":"https://cdn.haitrieu.com/wp-content/uploads/2022/05/Logo-Viettel-Post-Red.png",
+        "thời gian":"2-3 ngày"
+    }
+]

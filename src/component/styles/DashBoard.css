@@ -1,0 +1,54 @@
+.left{
+    left: 30%;
+    float:left;
+    height: 100vh;
+    background-color: black;
+}
+.opt{
+    display: flex;
+}
+.left-logo{
+    justify-content: center;
+    text-align: center;    
+}
+.text-logo{
+    color:#ffff;
+}
+.opt-item{
+    color:#ffff;
+    text-decoration: none;
+    list-style-type:none;
+    font-size: 20px;
+    margin-bottom: 30px;
+    justify-content: center;
+    padding-top: 20px;
+    position: relative;
+    
+}
+.opt-item:hover{
+    background-color: rgb(43, 138, 255);
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    transition: 250ms;
+    padding-left: 0px;
+}
+
+.opt-list{
+    padding-left: 60px;
+    padding-right: 30px;
+}
+.right{
+    display: block;
+}
+.right-header{
+    background-color: rgb(38, 231, 31);
+    width: 100%;
+    height: 65px;
+    
+}
+.admin-name{
+     float:right;
+     padding-right: 20px;
+     padding-top: 1%;
+}

@@ -1,0 +1,209 @@
+body{
+    background-color: rgb(214, 209, 209);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    border-bottom: 1px solid rgb(98, 213, 233);
+    background-color: #000000;
+    z-index: 100;
+    top: 0;
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+    align-items: center;
+    padding: 0 20px 0;
+    height: 60px;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    background-color: rgb(156, 154, 154);
+    width: 100%;
+}
+
+.main {
+    position: sticky;
+    /* position: relative; */
+    width: 100%;
+}
+
+.header_left {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.header_left>img {
+    margin-top: 6px;
+    height: 35px;
+}
+
+.header_input {
+    display: flex;
+    align-items: center;
+    background-color: rgb(143, 181, 214);
+    padding: 10px;
+    margin-left: 0px;
+    border-radius: 999px;
+    width: 280px
+}
+
+.header_input>input {
+    border: none;
+    background-color: transparent;
+    outline-width: 0;
+}
+
+.header_center {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.header_option {
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    cursor: pointer;
+}
+
+.header_option:hover {
+    background-color: #eff2f5;
+    border-radius: 10px;
+    align-items: center;
+    padding: 0 30px;
+    border-bottom: none;
+}
+
+.header_option>.MuiSvgIcon-root {
+    color: rgb(255, 255, 255);
+}
+
+.home {
+    color: #ffff;
+}
+
+.header_option:hover>.MuiSvgIcon-root {
+    color: #2e81f4;
+}
+
+.header_option--active>.MuiSvgIcon-root {
+    color: #2e81f4;
+}
+
+.header_option--active {
+    border-bottom: 4px solid #2e81f4;
+}
+
+.header_info {
+    display: flex;
+    margin-right: 90px;
+    align-items: center;
+    color: #eff2f5
+}
+
+.header_info_text {
+    color: #eff2f5
+}
+
+.header_info_text:hover {
+    color: #eff2f5
+}
+
+.header_info>h4 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.header_right {
+    display: flex;
+    padding-left: 20px;
+}
+
+.iconButton>.MuiIconButton-root {
+    margin: 4px;
+    color: rgb(255, 255, 255);
+    border-radius: 99px;
+    background-color: #eff2f5;
+    margin-left: 20px;
+}
+
+.iconButton {
+    margin-left: 20px;
+    color: #ffff;
+}
+
+.item {
+    list-style-type: none;
+    display: inline-block;
+    color:#000000
+}
+
+.menu {
+    display: flex;
+    width: 100%;
+    text-align: center;
+}
+
+.item-container {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding: 0%;
+}
+
+.item-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 24px 0;
+    text-align: center;
+    position: relative;
+}
+
+.pop {
+    background-color: rgb(215, 215, 215);
+    width: 200px;
+    height: 300px;
+    position: absolute;
+}
+
+.pro5{
+    margin-top: 30px;
+    background-color: #ffff;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100px;
+    border-radius: 20px;
+}
+.form{
+    padding:5px;
+    justify-content: center;    
+}
+
+.info{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+        margin-left: auto;
+            margin-right: auto;
+    margin-top: 50px;
+}
+
+.order{
+    background-color: #ffff;
+    width: 170px;
+    border-radius: 20px;
+}
+.text{
+    justify-content: center;
+    text-align: center;
+}

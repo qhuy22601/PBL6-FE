@@ -1,0 +1,96 @@
+.search {
+    position: relative;
+    background-color: #ffff;
+    width: 361px;
+    padding-left: 16px;
+    display: flex;
+    outline: none;
+    height: 42px;
+    border-radius: 20px;
+    border: 1px solid #ffffff;
+    input {
+        flex: 1;
+        height: 100%;
+        caret-color: #000000;
+        border: transparent;
+        font-size: 19px;
+        outline: none;
+        color: #000000;
+        background-color: transparent;
+    }
+    input:not(:placeholder-shown)~.search-btn {
+        color: rgba(0, 0, 0, 0.75);
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        top: var(--search-top-spacer);
+        right: var(--search-button-width);
+        width: 1px;
+        height: calc(var(--search-height) - var(--search-top-spacer) * 2);
+        background-color: rgba(255, 255, 255, 0.12);
+    }
+    &:focus-within {
+        border-color: rgba(254, 254, 255, 0.2); // sửa lại focus thẻ input mới border ô search.
+    }
+}
+
+.search-results {
+    width: 361px;
+    .search-accounts {
+        padding: 5px 12px;
+        font-size: 14px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.5);
+    }
+}
+
+.clear,
+.loading {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(22, 24, 35, 0.34);
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.loading {
+    animation: spinner linear 0.8s infinite;
+}
+
+@keyframes spinner {
+    from {
+        transform: translateY(-50%) rotate(0);
+    }
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+.search-btn {
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--search-button-width);
+    height: 100%;
+    border-top-right-radius: var(--search-border-radius);
+    border-bottom-right-radius: var(--search-border-radius);
+    font-size: 1.8rem;
+    color: rgba(22, 24, 35, 0.34);
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+    &:active {
+        background-color: rgba(22, 24, 35, 0.06);
+    }
+}
+
+.title {
+    color: #000;
+}

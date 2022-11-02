@@ -1,0 +1,259 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    border-bottom: 1px solid rgb(98, 213, 233);
+    background-color: #000000;
+    z-index: 100;
+    top: 0;
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+    align-items: center;
+    padding: 0 20px 0;
+    height: 60px;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    background-color: rgb(211, 211, 211);
+    width: 100%;
+}
+
+.main {
+    position: sticky;
+    /* position: relative; */
+    width: 100%;
+}
+
+.header_left {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.header_left>img {
+    margin-top: 6px;
+    height: 35px;
+}
+
+.header_input {
+    display: flex;
+    align-items: center;
+    background-color: rgb(143, 181, 214);
+    padding: 10px;
+    margin-left: 0px;
+    border-radius: 999px;
+    width: 280px
+}
+
+.header_input>input {
+    border: none;
+    background-color: transparent;
+    outline-width: 0;
+}
+
+.header_center {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.header_option {
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    cursor: pointer;
+}
+
+.header_option:hover {
+    background-color: #eff2f5;
+    border-radius: 10px;
+    align-items: center;
+    padding: 0 30px;
+    border-bottom: none;
+}
+
+.header_option>.MuiSvgIcon-root {
+    color: rgb(255, 255, 255);
+}
+
+.home {
+    color: #ffff;
+}
+
+.header_option:hover>.MuiSvgIcon-root {
+    color: #2e81f4;
+}
+
+.header_option--active>.MuiSvgIcon-root {
+    color: #2e81f4;
+}
+
+.header_option--active {
+    border-bottom: 4px solid #2e81f4;
+}
+
+.header_info {
+    display: flex;
+    margin-right: 90px;
+    align-items: center;
+    color: #eff2f5
+}
+
+.header_info_text {
+    color: #eff2f5
+}
+
+.header_info_text:hover {
+    color: #eff2f5
+}
+
+.header_info>h4 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.header_right {
+    display: flex;
+    padding-left: 20px;
+}
+
+.iconButton>.MuiIconButton-root {
+    margin: 4px;
+    color: rgb(255, 255, 255);
+    border-radius: 99px;
+    background-color: #eff2f5;
+    margin-left: 20px;
+}
+
+.iconButton {
+    margin-left: 20px;
+    color: #ffff;
+}
+
+.item {
+    list-style-type: none;
+    display: inline-block;
+}
+
+.menu {
+    display: flex;
+    width: 100%;
+    text-align: center;
+}
+
+.item-container {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding: 0%;
+}
+
+.item-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 24px 0;
+    text-align: center;
+    position: relative;
+}
+
+.pop {
+    background-color: rgb(215, 215, 215);
+    width: 200px;
+    height: 300px;
+    position: absolute;
+}
+/* .navbar {
+    background-color: #060b26;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+} */
+
+.menu-bars {
+    margin-left: 0;
+    font-size: 2rem;
+    background: none;
+}
+
+.nav-menu {
+    background-color: #060b26;
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    transition: 850ms;
+}
+
+.nav-menu.active {
+    right: 0;
+    transition: 350ms;
+}
+
+.nav-text {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 8px 0px 8px 16px;
+    list-style: none;
+    height: 60px;
+}
+
+.nav-text a {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 18px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 4px;
+}
+
+.nav-text a:hover {
+    background-color: #1a83ff;
+    width: 100%;
+}
+
+.nav-menu-items {
+    width: 100%;
+    padding-left: 0;
+}
+
+.navbar-toggle {
+
+    background-color: #060b26;
+    width: 85%;
+    height: 40px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+span {
+    margin-left: 16px;
+}
+.test{
+    color:#0000
+}
+.ima{
+    display: flex;
+   }
+   .imgg{
+    margin-left: auto;
+    margin-right:auto;
+    justify-content: center;
+    text-align:center;
+    width: 660px;
+    height: 290px;
+   }

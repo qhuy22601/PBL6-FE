@@ -1,0 +1,28 @@
+.page_401{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
+}
+
+.page_401  img{ width:100%;}
+
+.four_zero_four_bg{
+ 
+ background-image: url(https://vietnix.vn/wp-content/uploads/2021/04/401-error-1024x512.jpeg);
+    height: 400px;
+    background-position: center;
+ }
+ 
+ 
+ .four_zero_four_bg h1{
+ font-size:80px;
+ }
+ 
+  .four_zero_four_bg h3{
+			 font-size:80px;
+			 }
+			 
+			 .link_404{			 
+	color: #fff!important;
+    padding: 10px 20px;
+    background: #39ac31;
+    margin: 20px 0;
+    display: inline-block;}
+	.contant_box_401{ margin-top:-50px;}
