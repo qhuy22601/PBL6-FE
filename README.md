@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This project use <ins>Node v16.13.0</ins>,<ins>npm v8.9.0</ins>.
+This project use <ins>Node v16.13.0</ins>, <ins>npm v8.9.0</ins>.
 
 
 ## Available Scripts
