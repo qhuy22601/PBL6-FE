@@ -52,12 +52,14 @@ function Header(props){
     setIsHovering1(!isHovering1);
     setIsHovering(false);
   };
-  const[checkSignin,setCheckSignin] =useState(localStorage.getItem("phoneNumber"))
+  const[checkSignin,setCheckSignin] =useState(localStorage.getItem("User"))
 
 
   const check = () =>{
     if (checkSignin !== null){
-      localStorage.removeItem("phoneNumber");
+      localStorage.removeItem("User");
+      localStorage.removeItem("Email")
+      localStorage.removeItem("Token")
       navigate("/home")
     }
 
@@ -84,9 +86,9 @@ function Header(props){
   
             <div className="header_center">
               {/* <div className="header_option header_option--active"> */}
-                {/* <Link to="/mainpage" className="home" onclick={check}> */}
+                {/* <Link to="/mainpage" className="home" onClick={check}> */}
                   {" "}
-                  <HomeOutlinedIcon fontSize="large" onclick={check}/>
+                  <HomeOutlinedIcon fontSize="large" onClick={check}/>
                 {/* </Link> */}
               {/* </div> */}
               

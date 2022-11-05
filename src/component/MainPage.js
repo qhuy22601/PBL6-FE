@@ -23,7 +23,7 @@ import HeaderAfter from './HeaderAfter'
 
 function MainPage(props){
 
-  const[checkSignin,setCheckSignin] =useState(localStorage.getItem("phoneNumber"))
+  const[checkSignin,setCheckSignin] =useState(localStorage.getItem("User"))
 
 
 

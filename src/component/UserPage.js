@@ -27,7 +27,7 @@ function UserPage(props){
     const [isHovering1, setIsHovering1] = useState(false);
     const [isHovering2, setIsHovering2] = useState(false);
     const [isHovering3, setIsHovering3] = useState(false);
-    const[checkSignin,setCheckSignin] =useState(localStorage.getItem("phoneNumber"))
+    const[checkSignin,setCheckSignin] =useState(localStorage.getItem("User"))
 
   const handleMouseOver = () => {
     setIsHovering(true);

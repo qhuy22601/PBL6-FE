@@ -12,7 +12,7 @@ import sneakers from "../fruit.json"
 function HomePage(){
 
 const [data,setData]=useState([]);
-const[checkSignin,setCheckSignin] =useState(localStorage.getItem("phoneNumber"))
+const[checkSignin,setCheckSignin] =useState(localStorage.getItem("User"))
 
 // useEffect=(() =>{
 //     if(localStorage.getItem('phoneNumber')!==null){

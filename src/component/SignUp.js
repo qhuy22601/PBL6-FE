@@ -18,100 +18,93 @@ import * as yup from "yup";
 import styles from "./styles/SignIn.module.css";
 
 function SignUp() {
-  const [file, setFile] = useState(null);
-  const [file64String, setFile64String] = useState(null);
-  const [file64StringWithType, setFile64StringWithType] = useState(null);
-  const [userRole, setUserRole] = useState("user");
+  // const [file, setFile] = useState(null);
+  // const [file64String, setFile64String] = useState(null);
+  // const [file64StringWithType, setFile64StringWithType] = useState(null);
+  // const [userRole, setUserRole] = useState("user");
   const [resData, setResData] = useState(null);
 
   let navigate = useNavigate();
 
   const schema = yup.object().shape({
+    name: yup.string().required(),
+    email: yup.string().email().required(),
     password: yup.string().required(),
-    phoneNumber: yup.string().required,
-
+    password_confirmation: yup.string().required(),
   });
 
   async function postSignUpInfo(inputData) {
+    console.log("click");
     const response = await axios({
       method: "post",
-      url: "/api/auth/users/save",
+      url: "http://localhost:8000/api/auth/signup",
       data: {
+        name: inputData.name,
+        email: inputData.email,
         password: inputData.password,
-        role: userRole,
-        phoneNumber: inputData.phoneNumber,
-    
+        password_confirmation: inputData.password_confirmation,
       },
     });
 
-    if (response.data !== null) {
-      setResData(response.data);
+    // if (response.data !== null) {
+    //   setResData(response.data);
+    // }
+
+    if (response.data !== null && response.data.status === "fails") {
+      showWarningToast(response.data.status);
     }
 
-    if (response.data !== null && response.data.status === "that bai") {
-      showWarningToast(response.data.message);
-    }
+    if (response.data !== null && response.data.status === "success") {
+      showWarningToast(response.data.status);
 
-    if (response.data !== null && response.data.status === "thanh cong") {
-      navigate("/");
+      navigate("/signin");
     }
   }
-  function onUploadFileChange(e) {
-    setFile64String(null);
-    if (e.target.files < 1 || !e.target.validity.valid) {
-      return;
-    }
+  // function onUploadFileChange(e) {
+  //   setFile64String(null);
+  //   if (e.target.files < 1 || !e.target.validity.valid) {
+  //     return;
+  //   }
 
-    compressImageFile(e);
-  }
+  //   compressImageFile(e);
+  // }
 
-  function fileToBase64(file, cb) {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-      cb(null, reader.result);
-    };
-    reader.onerror = function (error) {
-      cb(error, null);
-    };
-  }
+  // function fileToBase64(file, cb) {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onload = function () {
+  //     cb(null, reader.result);
+  //   };
+  //   reader.onerror = function (error) {
+  //     cb(error, null);
+  //   };
+  // }
 
-  function fileToBase64(file, cb) {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-      cb(null, reader.result);
-    };
-    reader.onerror = function (error) {
-      cb(error, null);
-    };
-  }
+  // async function compressImageFile(event) {
+  //   const imageFile = event.target.files[0];
 
-  async function compressImageFile(event) {
-    const imageFile = event.target.files[0];
+  //   const options = {
+  //     maxWidthOrHeight: 250,
+  //     useWebWorker: true,
+  //   };
+  //   try {
+  //     const compressedFile = await imageCompression(imageFile, options);
+  //     // input file is compressed in compressedFile, now write further logic here
 
-    const options = {
-      maxWidthOrHeight: 250,
-      useWebWorker: true,
-    };
-    try {
-      const compressedFile = await imageCompression(imageFile, options);
-      // input file is compressed in compressedFile, now write further logic here
-
-      fileToBase64(compressedFile, (err, result) => {
-        if (result) {
-          setFile(result);
-          //   console.log(file);
-          //   console.log(String(result.split(",")[1]));
-          setFile64StringWithType(result);
-          setFile64String(String(result.split(",")[1]));
-        }
-      });
-    } catch (error) {
-      setFile64String(null);
-      // console.log(error);
-    }
-  }
+  //     fileToBase64(compressedFile, (err, result) => {
+  //       if (result) {
+  //         setFile(result);
+  //         //   console.log(file);
+  //         //   console.log(String(result.split(",")[1]));
+  //         setFile64StringWithType(result);
+  //         setFile64String(String(result.split(",")[1]));
+  //       }
+  //     });
+  //   } catch (error) {
+  //     setFile64String(null);
+  //     // console.log(error);
+  //   }
+  // }
 
   function showWarningToast(inputMessage) {
     toast.warn(inputMessage, {
@@ -132,14 +125,10 @@ function SignUp() {
       <Formik
         validationSchema={schema}
         initialValues={{
+          name: "",
           email: "",
           password: "",
-          username: "",
-          firstName: "",
-          lastName: "",
-          address: "",
-          phoneNumber: "",
-          birthDate: ""
+          password_confirmation: "",
         }}
         onSubmit={(values, { setSubmitting }) => {
           postSignUpInfo(values);
@@ -160,65 +149,102 @@ function SignUp() {
             onSubmit={handleSubmit}
             className={styles.formContainer}
           >
-            <Grid>
-              <Paper className={styles.paper_logo} elevation={10}>
-                <Grid className={styles.grid_logo}>
-                  <h2>Sign Up</h2>
-                </Grid>
-                    <Row>
-                  <Form.Group
-                    className={styles.formGroup}
-                    as={Col}
-                    md="12"
-                    controlId="signUpPhoneNumber"
-                  >
-                    <Form.Label className={styles.formLabel}>SĐT</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="phoneNumber"
-                      value={values.phoneNumber}
-                      onChange={handleChange}
-                      isInvalid={touched.phoneNumber && errors.phoneNumber}
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      Nhập SĐT
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                </Row>
-               
-                <Row>
-                  <Form.Group
-                    className={styles.formGroup}
-                    as={Col}
-                    md="12"
-                    controlId="signInPassword"
-                  >
-                    <Form.Label className={styles.formLabel}>
-                      Mật khẩu
-                    </Form.Label>
-                    <Form.Control
-                      type="password"
-                      name="password"
-                      value={values.password}
-                      onChange={handleChange}
-                      isInvalid={touched.password && errors.password}
-                    />
+            <Row className="mb-5 text-center">
+              <h1 className="text-success">Sign Up</h1>
+            </Row>
+            <Row>
+              <Form.Group
+                className={styles.formGroup}
+                as={Col}
+                md="12"
+                controlId="signupname"
+              >
+                <Form.Label className={styles.formLabel}>Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="name"
+                  value={values.name}
+                  onChange={handleChange}
+                  isInvalid={touched.name && errors.name}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {/* Nhập Name */}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group
+                className={styles.formGroup}
+                as={Col}
+                md="12"
+                controlId="signupemail"
+              >
+                <Form.Label className={styles.formLabel}>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  isInvalid={touched.email && errors.email}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {/* Nhập Email */}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
 
-                    <Form.Control.Feedback type="invalid">
-                      Nhập mk
-                    </Form.Control.Feedback>
-</Form.Group>
-             
-            
-            
+            <Row>
+              <Form.Group
+                className={styles.formGroup}
+                as={Col}
+                md="12"
+                controlId="signInPassword"
+              >
+                <Form.Label className={styles.formLabel}>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  isInvalid={touched.password && errors.password}
+                />
 
-                    
-                </Row>
-                <Button type="submit" variant="primary">
-                  Đăng kí
-                </Button>
-              </Paper>
-            </Grid>
+                <Form.Control.Feedback type="invalid">
+                  {/* Password */}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+
+            <Row>
+              <Form.Group
+                className={styles.formGroup}
+                as={Col}
+                md="12"
+                controlId="signInPassword_comfirm"
+              >
+                <Form.Label className={styles.formLabel}>
+                  Confirm Password
+                </Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password_confirmation"
+                  value={values.password_confirmation}
+                  onChange={handleChange}
+                  isInvalid={
+                    touched.password_confirmation &&
+                    errors.password_confirmation
+                  }
+                />
+
+                <Form.Control.Feedback type="invalid">
+                  {/* Confirm Password */}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+
+            <Button type="submit" variant="success">
+              Sign Up
+            </Button>
           </Form>
         )}
       </Formik>

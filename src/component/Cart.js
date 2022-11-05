@@ -14,7 +14,7 @@ function Cart(){
 
     const [check, setCheck] = useState(false);
     const [check1, setCheck1] = useState(false);
-    const[checkSignin,setCheckSignin] =useState(localStorage.getItem("phoneNumber"))
+    const[checkSignin,setCheckSignin] =useState(localStorage.getItem("User"))
 
 
     const [show, setShow]= useState(false);

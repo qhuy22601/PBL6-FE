@@ -49,14 +49,16 @@ function HeaderAfter(props){
     setIsHovering(false);
   };
 
-  const[checkSignin,setCheckSignin] =useState(localStorage.getItem("phoneNumber"))
+  const[checkSignin,setCheckSignin] =useState(localStorage.getItem("User"))
 
-  const[phoneNumber, setPhoneNumber] = useState(localStorage.getItem("phoneNumber"));
+  const[phoneNumber, setPhoneNumber] = useState(localStorage.getItem("User"));
   let navigate = useNavigate();
 
   const check = () =>{
     if (checkSignin !== null){
-      localStorage.removeItem('phoneNumber')
+      localStorage.removeItem('User')
+      localStorage.removeItem("Email")
+      localStorage.removeItem("Token")
       navigate("/home")
     }
 
@@ -80,7 +82,7 @@ function HeaderAfter(props){
             <SearchInput />
   
             <div className="header_center">
-              <div className="header_option header_option--active" onClick={check}>
+              <div className="header_option " onClick={check}>
                 {/* <Link to="/mainpage" className="home"> */}
                   {" "}
                   <HomeOutlinedIcon fontSize="large"  />

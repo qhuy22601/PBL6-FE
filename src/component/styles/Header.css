@@ -90,13 +90,13 @@
     color: #2e81f4;
 }
 
-.header_option--active>.MuiSvgIcon-root {
+/* .header_option--active>.MuiSvgIcon-root {
     color: #2e81f4;
 }
 
 .header_option--active {
     border-bottom: 4px solid #2e81f4;
-}
+} */
 
 .header_info {
     display: flex;
@@ -106,7 +106,10 @@
 }
 
 .header_info_text {
-    color: #eff2f5
+    color: #eff2f5;
+    text-transform: capitalize;
+    text-decoration: none;
+    font-size: 15px;
 }
 
 .header_info_text:hover {
