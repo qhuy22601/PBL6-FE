@@ -16,7 +16,8 @@ import AdminStatistic from "./AdminStatistic";
 import AdminSetting from "./AdminSetting";
 import AdminReport from "./AdminReport";
 import AdminProd from "./AdminProd";
-
+import Forgot from "./Forgot";
+import Reset from "./Reset";
 function AppContainer(){
 
     return (
@@ -27,6 +28,8 @@ function AppContainer(){
                 <Route path="/home" element={<HomePage/>}/>
                 <Route path="/signup" element={<SignUp/>}/>
                 <Route path="/signin" element={<SignIn/>}/>
+                <Route path="/forgot" element={<Forgot/>}/>
+                <Route path="reset" element={<Reset/>}></Route>
                 <Route path="/mainpage" element={<MainPage/>}/>
                 <Route path="/cart" element={<Cart/>}/>
                 <Route path="/user" element={<UserPage/>}/>

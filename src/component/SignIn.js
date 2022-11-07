@@ -37,11 +37,12 @@ function SignIn() {
     
     if (response.data !== null && response.data.status === "Thất bại !!!") {
       showWarningToast(response.data.status);
+      console.log(response.data.status)
     }
     
     if (response.data !== null && response.data.status === "Thành công !!!") {
       setResData(response.data.status);
-      
+      showWarningToast(response.data.status);
       localStorage.setItem("User", response.data.name);
       localStorage.setItem("Email", response.data.email);
       localStorage.setItem("Token", response.data.access_token);
@@ -128,6 +129,13 @@ function SignIn() {
             <Button type="submit" variant="success">
               Sign In <RiLoginBoxLine />
             </Button>
+            <div>
+            <Link to ="/forgot"> 
+                <h4>
+                  Forgot password
+                </h4>
+              </Link> 
+            </div>
             <div >
               <Link to ="/signup"> 
                 <h4>
