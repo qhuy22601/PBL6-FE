@@ -29,9 +29,7 @@ function DashBoard(){
         </div>
              
         <div className="right">
-            <div className="right-header">
-                <div className="admin-name">admin1</div>
-            </div>
+           
             <Outlet/>
         </div>
     </div>

@@ -14,7 +14,8 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { RiLoginBoxLine } from "react-icons/ri";
 import Fruit from "./Fruit";
 
-// import styles from "./styles/SignIn.module.css"
+import "./styles/AdminProd.css";
+
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { Token } from "@mui/icons-material";
@@ -44,8 +45,12 @@ function AdminProd(){
 
   async function createFruit(inputData) {
     const fdata = new FormData();
-    fdata.append("image", img);
+    fdata.append("image_url", img);
     fdata.append("fruit_name", inputData.fruit_name);
+    fdata.append("price", inputData.price);
+    fdata.append("brand", inputData.brand);
+    fdata.append("amount", inputData.amount);
+    fdata.append("description", inputData.description);
     const response = await axios({
       method: "post",
       url: "http://localhost:8000/api/auth/admin/createFruit",
@@ -79,11 +84,32 @@ function AdminProd(){
     console.log("toast");
   }
 
+  async function updateFruit(inputData){
+    const response = await axios({
+      method:"post",
+      url:"http://127.0.0.1:8000/api/auth/admin/updateFruit",
+      headers:{
+        Authorization: "Bearer "+ localStorage.getItem("Token"),
+      },
+      data:{
+        id: inputData.id,
+        amount: inputData.amount,
+      }
+    });
+    if(response.data.status === "Thành công !!!" && response.data!=null){
+      console.log("ok thanh cong update")
+    }
+    if(response.data.status === "Thất Bại !!!" && response.data!=null){
+      showWarningToast(response.data.status)
+    }
+  }
+
 
   
     return(
           <Container className="">
       <ToastContainer />
+      <div className="dual">
       <Formik
         // validationSchema={schema}
         initialValues={{
@@ -228,6 +254,84 @@ function AdminProd(){
           </Form>
         )}
       </Formik>
+
+
+      <Formik
+        // validationSchema={schema}
+        initialValues={{
+          id:"",
+          amount: "",
+          
+        }}
+        onSubmit={(values, { setSubmitting }) => {
+          updateFruit(values);
+          setSubmitting(false);
+        }}
+      >
+        {({
+          handleSubmit,
+          handleChange,
+          handleBlur,
+          values,
+          touched,
+          isInValid,
+          errors,
+        }) => (
+          <Form
+            noValidate
+            onSubmit={handleSubmit}
+            className=""
+          >
+            <Grid>
+               
+                <Row>
+                  <Form.Group
+                    className=""
+                    as={Col}
+                    md="12"
+                    controlId="id"
+                  >
+                    <Form.Label className="">Id</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="id"
+                      value={values.id}
+                      onChange={handleChange}
+                      isInvalid={touched.id && errors.id}
+                    />
+                  </Form.Group>
+                </Row>
+                <Row>
+                  <Form.Group
+                    className=""
+                    as={Col}
+                    md="12"
+                    controlId="amount"
+                  >
+                    <Form.Label className="">
+                    Amount
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="amount"
+                      value={values.amount}
+                      onChange={handleChange}
+                      isInvalid={touched.amount && errors.amount}
+                    />
+
+                    </Form.Group>
+                
+                 
+            
+                </Row>
+                <Button type="submit" variant="primary">
+                  update
+              </Button>
+            </Grid>
+          </Form>
+        )}
+      </Formik>
+      </div>
       <div>
           <FruitList/>
       </div>
