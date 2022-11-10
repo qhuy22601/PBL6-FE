@@ -12,11 +12,13 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/esm/Container";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { RiLoginBoxLine } from "react-icons/ri";
+import Fruit from "./Fruit";
 
 // import styles from "./styles/SignIn.module.css"
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { Token } from "@mui/icons-material";
+import FruitList from "./FruitList";
 
 
 function AdminProd(){
@@ -227,7 +229,7 @@ function AdminProd(){
         )}
       </Formik>
       <div>
-
+          <FruitList/>
       </div>
     </Container>
     );
