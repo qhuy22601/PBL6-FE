@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header"
-import MenuBar from "./MenuBar"
 import "./styles/HomePage.css";
 import { Slide } from 'react-slideshow-image';
-import './styles/Slide.css'
+// import './styles/Slide.css'
 import HeaderAfter from "./HeaderAfter"
-
-import sneakers from "../fruit.json"
-
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Fruit from './Fruit'
 
 function HomePage(){
 
@@ -35,21 +34,13 @@ const[checkSignin,setCheckSignin] =useState(localStorage.getItem("User"))
 
        
 
-    <div className='product'>
-       <div className="gallery">
-            {sneakers.map(shoes=>{
-                return(
-                    <div className="content" key={shoes.id}>
-                        
-                       <h3>{shoes.name}</h3>
-                        <img className="shoes" src= {shoes.image}></img>
-                        <h4>{shoes.price} VND</h4>
-                    </div>
-                )
-            })}
+    {/* <div className='product'> */}
+       <div className="show">
+           
+            <Fruit/>
         </div>
             </div>
-        </div>
+        // </div>
         
 
     );

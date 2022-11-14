@@ -1,0 +1,11 @@
+.body {
+  box-sizing: border-box;
+}
+.card-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: auto;
+  justify-content: space-around;
+  /* border: 1px solid #c3c3c3; */
+}
