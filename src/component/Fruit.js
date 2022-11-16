@@ -14,133 +14,101 @@ import { RiCheckFill, RiUserFollowFill } from "react-icons/ri";
 // import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-// function FruitList() {
-//   const [error, setError] = useState(null);
-//   const [resData, setResData] = useState([]);
-//   const [quanty, setQuanty] = useState(null);
-//   const [index, setIndex] = useState(null);
+function Fruit() {
+  const [error, setError] = useState(null);
+  const [resData, setResData] = useState([]);
+  const [quanty, setQuanty] = useState(null);
+  const [index, setIndex] = useState(null);
 
-//   async function getAllFruit() {
-//     const response = await axios({
-//       method: "get",
-//       url: "http://localhost:8000/api/auth/all/getAllFruit",
-//       headers: {
-//         Authorization: "Bearer " + localStorage.getItem("Token"),
-//       },
-//     });
-//     if (response.data != null && response.data.status === "Thất bại !!!") {
-//       console.log(response.data.status);
-//     }
-//     if (response.data != null && response.data.status === "Thành công !!!") {
-//       setResData(response.data.data);
-//     }
-//   }
+  async function getAllFruit() {
+    const response = await axios({
+      method: "get",
+      url: "http://localhost:8000/api/auth/all/getAllFruit",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("Token"),
+      },
+    });
+    if (response.data != null && response.data.status === "Thất bại !!!") {
+      console.log(response.data.status);
+    }
+    if (response.data != null && response.data.status === "Thành công !!!") {
+      setResData(response.data.data);
+    }
+  }
 
-//   useEffect(() => {
-//     getAllFruit();
-//   }, [resData]);
-
-
-//   function change(e){
-//     setQuanty(e.target.quanty);
-//   }
-
-//   return (
-//     <div className="card-grid">
-//       {resData.map((item, index) => {
-//         return (
-//           <Card
-//             sx={{ width: 220, marginRight: 2, marginBottom: 2 }}
-//             key={item.id}
-//           >
-//             <CardMedia
-//               component="img"
-//               height="140"
-//               image={`http://localhost/pbl6/${item.image_url}`}
-//               alt="green iguana"
-//             />
-//             <CardContent>
-//               <Typography gutterBottom variant="h5" component="div">
-//                 {item.fruit_name}
-//               </Typography>
-//               <Typography variant="body2" color="text.secondary">
-//                 {item.price}
-//               </Typography>
-//             </CardContent>
-//             <CardActions>
-//               <Button  onClick={(e) => setQuanty(quanty - 1)}>-</Button>
-//               <input
-//                 value={quanty}
-//                 handleChange={change}
-//                 key={index}
-//               />
-//               <Button onClick={(e) => setQuanty(quanty + 1)}>+</Button>
-//             </CardActions>
-//             <CardActions>
-//               <Button size="small">Buy</Button>
-//               <Button size="small">Add to cart</Button>
-//             </CardActions>
-//           </Card>
-
-//           //   </div>
-//         );
-//       })}
-//     </div>
-//   );
-// }
-
-// export default FruitList;
+  useEffect(() => {
+    getAllFruit();
+  }, [resData]);
 
 
-function Fruit(props){
-    const [error, setError] = useState(null);
-    const [resData, setResData] = useState([]);
-    const [quanty, setQuanty] = useState(null);
-    const [index, setIndex] = useState(null);
-  // const dispatch = useDispatch();
   function change(e){
     setQuanty(e.target.quanty);
   }
-  // const storeFruit = useSelector((state) => state.fruitReducer.getData);
-
-  // useEffect(() => {
-  //   if(storeFruit !==null){
-  //     for(let i=0; i<storeFruit.length; i++){
-  //       if(storeFruit[i].id ===props.id){
-
-  //       }
-  //     }
-  //   }
-  // })
 
   return (
-    <Card sx={{ width: 220, marginRight: 2, marginBottom: 2 }} key={props.id}>
-      <CardMedia
-        component="img"
-        height="140"
-        image={`http://localhost/pbl6/${props.image_url}`}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {props.fruit_name}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {props.price}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button onClick={(e) => setQuanty(quanty - 1)}>-</Button>
-        <input value={quanty} handleChange={change} key={props.id} />
-        <Button onClick={(e) => setQuanty(quanty + 1)}>+</Button>
-      </CardActions>
-      <CardActions>
-        <Button size="small">Buy</Button>
-        <Button size="small">Add to cart</Button>
-      </CardActions>
-    </Card>
+    <div className="card-grid">
+      {resData.map((item, index) => {
+        return (
+          <Card
+            sx={{ width: 220, marginRight: 2, marginBottom: 2 }}
+            key={item.id}
+          >
+            <CardMedia
+              component="img"
+              height="140"
+              image={`http://localhost/pbl6/${item.image_url}`}
+              alt="green iguana"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {item.fruit_name}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {item.price}
+              </Typography>
+            </CardContent>
+            
+            <CardActions>
+              <Button size="small">Buy</Button>
+              <Button size="small">Add to cart</Button>
+            </CardActions>
+          </Card>
 
-    //   </div>
+          //   </div>
+        );
+      })}
+    </div>
   );
 }
 
 export default Fruit;
+
+
+// function Fruit(props){ 
+//   return (
+//     <Card sx={{ width: 220, marginRight: 2, marginBottom: 2 }} key={props.id}>
+//       <CardMedia
+//         component="img"
+//         height="140"
+//         image={`http://localhost/pbl6/${props.image_url}`}
+//       />
+//       <CardContent>
+//         <Typography gutterBottom variant="h5" component="div">
+//           {props.fruit_name}
+//         </Typography>
+//         <Typography variant="body2" color="text.secondary">
+//           {props.price}
+//         </Typography>
+//       </CardContent>
+     
+//       <CardActions>
+//         <Button size="small">Buy</Button>
+//         <Button size="small">Add to cart</Button>
+//       </CardActions>
+//     </Card>
+
+//     //   </div>
+//   );
+// }
+
+// export default Fruit;
