@@ -1,32 +1,34 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState = {
-  getData: [],
-};
+// const initialState={
+//   getData:[]
+// };
+
 export const getAllFruits = createAsyncThunk(
-  "api/auth/all/getAllFruit",
-  async (thunkAPI) => {
+  "api/getAllFruit",
+  async () => {
     const response = await axios({
       method: "get",
-      url: "http://localhost:8000/api/auth/all/getAllFruit",
+      url: "http://localhost:8000/api/auth/admin/getAllFruit",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("Token"),
       },
     });
-    return response.data.data
+    console.log({response});
+    return response.data.data;
   }
 );
 
-export const FruitSlice = createSlice({
+const FruitSlice = createSlice({
   name: "getAllFruits",
-  initialState,
+  initialState:{getData: []},
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getAllFruits.fulfilled, (state, action) => {
-      state.getData =action.payload;
-    })
+      state.getData = action.payload;
+    });
   },
 });
 
-export default FruitSlice.reducer;
+export default FruitSlice;

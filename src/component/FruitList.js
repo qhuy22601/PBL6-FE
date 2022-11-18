@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 // import {getAllFruits} from "./Feature/Fruit/FruitSlice"
 import Fruit from "./Fruit";
 import axios from "axios";
+import "./styles/FruitList.css";
+
 
 function FruitList() {
   //   const dispatch = useDispatch();
@@ -47,7 +49,7 @@ function FruitList() {
   async function getAllFruit() {
     const response = await axios({
       method: "get",
-      url: "http://localhost:8000/api/auth/all/getAllFruit",
+      url: "http://localhost:8000/api/auth/admin/getAllFruit",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("Token"),
       },
@@ -65,7 +67,7 @@ function FruitList() {
   }, [resData]);
 
   return (
-    <div className="card-grid">
+    <div className="card-gridd">
       {resData.map((item) => {
         return (
           <div className="buying-item" key={item.id}>

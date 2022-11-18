@@ -9,7 +9,7 @@ function FruitItem(){
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const storeAllFruits = useSelector(
-      (state) => state.fruitReducer.getAllFruits
+      (state) => state.getAllFruits.getAllFruits
     );
 
     
