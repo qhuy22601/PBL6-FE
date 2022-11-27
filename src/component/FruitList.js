@@ -72,11 +72,14 @@ function FruitList() {
         return (
           <div className="buying-item" key={item.id}>
             <div className="img-wrapper">
-              <img className="anh" src={`http://localhost/pbl6/${item.image_url}`} />
+              <img
+                className="anh"
+                src={`http://localhost/pbl6/${item.image_url}`}
+              />
             </div>
             <div className="img-wrapper">
-            <h4 className="fixx">id </h4>
-            <h4 className="fixx">{item.id}</h4>
+              <h4 className="fixx">id </h4>
+              <h4 className="fixx">{item.id}</h4>
             </div>
             <div className="namee">
               <h4 className="fixx">Tên </h4>

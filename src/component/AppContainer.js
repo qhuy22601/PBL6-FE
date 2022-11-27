@@ -1,6 +1,5 @@
 import React from "react";
-import {HashRouter, Routes,Route} from "react-router-dom";
-
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
@@ -19,35 +18,35 @@ import AdminProd from "./AdminProd";
 import Forgot from "./Forgot";
 import Reset from "./Reset";
 import UnauthorizedPage from "./UnauthorizedPage";
-function AppContainer(){
-
-    return (
-      <HashRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/home" exact="true" element={<HomePage />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/forgot" element={<Forgot />} />
-          <Route path="reset" element={<Reset />}></Route>
-          <Route path="/mainpage" element={<MainPage />} />
-          <Route path="/unauth" element={<UnauthorizedPage />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/user" element={<UserPage />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/dashboard" element={<DashBoard />}>
-            <Route path="customer" element={<AdminCust />} />
-            <Route path="order" element={<AdminOrder />} />
-            <Route path="product" element={<AdminProd />} />
-            <Route path="report" element={<AdminReport />} />
-            <Route path="setting" element={<AdminCust />} />
-            <Route path="statistic" element={<AdminStatistic />} />
-            <Route path="setting" element={<AdminSetting />} />
-          </Route>
-        </Routes>
-      </HashRouter>
-    );
-
+import FruitDetail from "./FruitDetail";
+function AppContainer() {
+  return (
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/home" exact="true" element={<HomePage />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/forgot" element={<Forgot />} />
+        <Route path="reset" element={<Reset />}></Route>
+        <Route path="/mainpage" element={<MainPage />} />
+        <Route path="/unauth" element={<UnauthorizedPage />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/fruit-detail/:id" element={<FruitDetail />} />
+        <Route path="/user" element={<UserPage />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/dashboard" element={<DashBoard />}>
+          <Route path="customer" element={<AdminCust />} />
+          <Route path="order" element={<AdminOrder />} />
+          <Route path="product" element={<AdminProd />} />
+          <Route path="report" element={<AdminReport />} />
+          <Route path="setting" element={<AdminCust />} />
+          <Route path="statistic" element={<AdminStatistic />} />
+          <Route path="setting" element={<AdminSetting />} />
+        </Route>
+      </Routes>
+    </HashRouter>
+  );
 }
 
 export default AppContainer;
