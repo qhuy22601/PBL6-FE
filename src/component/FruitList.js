@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Fruit from "./Fruit";
 import axios from "axios";
 import "./styles/FruitList.css";
+import { Button } from "react-bootstrap";
 
 
 function FruitList() {
@@ -43,7 +44,6 @@ function FruitList() {
   //     </div>
   //   );
 
-  const [error, setError] = useState(null);
   const [resData, setResData] = useState([]);
 
   async function getAllFruit() {
@@ -62,9 +62,27 @@ function FruitList() {
     }
   }
 
-  useEffect(() => {
-    getAllFruit();
-  }, [resData]);
+ 
+
+  async function delFruit(id){
+    const res = await axios({
+      method: "delete",
+      url: "http://localhost:8000/api/auth/admin/deleteFruit/" + id,
+      headers:{
+        Authorization: "Bearer " + localStorage.getItem("Token"),
+      },
+    });
+    if(res.data.status ==="Thành công !!!"){
+      alert("Thành công !!!");
+    }
+    if(res.data.status ==="Thất bại !!!"){
+      alert("Thất bại !!!");
+    }
+  }
+
+   useEffect(() => {
+     getAllFruit();
+   }, [resData]);
 
   return (
     <div className="card-gridd">
@@ -100,6 +118,9 @@ function FruitList() {
             <div className="total">
               <h4 className="fixx">nhan hang</h4>
               <h4 className="fixx">{item.brand}</h4>
+            </div>
+            <div className="total">
+              <Button type="button" className="fixx" onClick={()=>delFruit(`${item.id}`)}>X</Button>
             </div>
           </div>
         );
