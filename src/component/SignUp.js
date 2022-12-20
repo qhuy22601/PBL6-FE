@@ -37,7 +37,7 @@ function SignUp() {
     console.log("click");
     const response = await axios({
       method: "post",
-      url: "http://localhost:8000/api/auth/signup",
+      url: "http://116.105.26.48/api/auth/signup",
       data: {
         name: inputData.name,
         email: inputData.email,

@@ -28,7 +28,7 @@ function SignIn() {
   async function postSignInInfo(inputData) {
     const response = await axios({
       method: "post",
-      url: "http://localhost:8000/api/auth/login",
+      url: "http://116.105.26.48/api/auth/login",
       data: {
         email: inputData.email,
         password: inputData.password,

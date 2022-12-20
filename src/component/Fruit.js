@@ -31,7 +31,7 @@ function Fruit({data}) {
   async function getAllFruit() {
     const response = await axios({
       method: "get",
-      url: "http://localhost:8000/api/auth/admin/getAllFruit",
+      url: "http://116.105.26.48/api/auth/getAllFruit",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("Token"),
       },
@@ -46,13 +46,13 @@ function Fruit({data}) {
 
   useEffect(() => {
     getAllFruit();
-  }, [resData]);
+  },[]);
 
   // const fruitId = useContext()
   // async function getFruitById(id){
   //   const res = await axios({
   //     method: "GET",
-  //     url: "http://localhost:8000/api/auth/admin/getFruitFollowId/" + id,
+  //     url: "http://116.105.26.48/api/auth/admin/getFruitFollowId/" + id,
   //     headers:{
   //       Authorization: "Bearer " + localStorage.getItem("Token")
   //     },
@@ -78,8 +78,8 @@ function Fruit({data}) {
               <CardMedia
                 component="img"
                 height="140"
-                image={`http://localhost/pbl6/${item.image_url}`}
-                alt="green iguana"
+                image={`http://116.105.26.48${item.image_url}`}
+                alt=""
               />
             </Link>
             <CardContent>

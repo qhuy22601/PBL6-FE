@@ -25,7 +25,7 @@ function Forgot(){
     async function submit(e){
         const response = await axios({
             method: "post",
-            url: "http://localhost:8000/api/auth/reset-password",
+            url: "http://116.105.26.48/api/auth/reset-password",
             data:{
                 email: e.email
             },

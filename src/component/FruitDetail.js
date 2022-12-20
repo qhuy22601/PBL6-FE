@@ -13,7 +13,6 @@ import Typography from "@mui/material/Typography";
 import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
 import styles from "./styles/FruitDetail.module.css";
-import { NumericFormat } from "react-number-format";
 
 function FruitDetail() {
   const { id } = useParams();
@@ -25,7 +24,7 @@ function FruitDetail() {
   async function getFruitById() {
     const res = await axios({
       method: "GET",
-      url: "http://localhost:8000/api/auth/admin/getFruitFollowId/" + id,
+      url: "http://116.105.26.48/api/auth/admin/getFruitFollowId/" + id,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("Token"),
       },
@@ -66,7 +65,7 @@ function FruitDetail() {
       </div>
       <div className={styles.columnImage}>
         <img
-          src={`http://localhost/pbl6/${data.image_url}`}
+          src={`http://116.105.26.48${data.image_url}`}
           className={styles.img}
         ></img>
       </div>

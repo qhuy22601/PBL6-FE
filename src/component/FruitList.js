@@ -49,7 +49,7 @@ function FruitList() {
   async function getAllFruit() {
     const response = await axios({
       method: "get",
-      url: "http://localhost:8000/api/auth/admin/getAllFruit",
+      url: "http://116.105.26.48/api/auth/admin/getAllFruit",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("Token"),
       },
@@ -67,7 +67,7 @@ function FruitList() {
   async function delFruit(id){
     const res = await axios({
       method: "delete",
-      url: "http://localhost:8000/api/auth/admin/deleteFruit/" + id,
+      url: "http://116.105.26.48/api/auth/admin/deleteFruit/" + id,
       headers:{
         Authorization: "Bearer " + localStorage.getItem("Token"),
       },
@@ -92,7 +92,7 @@ function FruitList() {
             <div className="img-wrapper">
               <img
                 className="anh"
-                src={`http://localhost/pbl6/${item.image_url}`}
+                src={`http://116.105.26.48${item.image_url}`}
               />
             </div>
             <div className="img-wrapper">

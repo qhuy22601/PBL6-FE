@@ -10,7 +10,7 @@ export const getAllFruits = createAsyncThunk(
   async () => {
     const response = await axios({
       method: "get",
-      url: "http://localhost:8000/api/auth/admin/getAllFruit",
+      url: "http://116.105.26.48/api/auth/admin/getAllFruit",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("Token"),
       },

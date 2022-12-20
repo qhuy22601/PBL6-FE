@@ -53,7 +53,7 @@ function AdminProd(){
     fdata.append("description", inputData.description);
     const response = await axios({
       method: "post",
-      url: "http://localhost:8000/api/auth/admin/createFruit",
+      url: "http://116.105.26.48/api/auth/admin/createFruit",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("Token"),
         'Content-Type': "multipart/form-data"
@@ -87,7 +87,7 @@ function AdminProd(){
   async function updateFruit(inputData){
     const response = await axios({
       method:"post",
-      url:"http://127.0.0.1:8000/api/auth/admin/updateFruit",
+      url:"116.105.26.48/api/auth/admin/updateFruit",
       headers:{
         Authorization: "Bearer "+ localStorage.getItem("Token"),
       },
