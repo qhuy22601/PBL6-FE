@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 // import { useDispatch, useSelector } from "react-redux";
 // import {getAllFruits} from "./Feature/Fruit/FruitSlice"
-import Fruit from "./Fruit";
-import axios from "axios";
-import "./styles/FruitList.css";
-import { Button } from "react-bootstrap";
+import Fruit from './Fruit';
+import axios from 'axios';
+import './styles/FruitList.css';
+import { Button } from 'react-bootstrap';
 
+import { Card, Col, Row } from 'antd';
 
 function FruitList() {
   //   const dispatch = useDispatch();
@@ -48,83 +49,93 @@ function FruitList() {
 
   async function getAllFruit() {
     const response = await axios({
-      method: "get",
-      url: "http://116.105.26.48/api/auth/admin/getAllFruit",
+      method: 'get',
+      url: 'http://116.105.26.48/api/auth/admin/getAllFruit',
       headers: {
-        Authorization: "Bearer " + localStorage.getItem("Token"),
+        Authorization: 'Bearer ' + localStorage.getItem('Token'),
       },
     });
-    if (response.data != null && response.data.status === "Thất bại !!!") {
+    if (response.data != null && response.data.status === 'Thất bại !!!') {
       console.log(response.data.status);
     }
-    if (response.data != null && response.data.status === "Thành công !!!") {
+    if (response.data != null && response.data.status === 'Thành công !!!') {
       setResData(response.data.data);
     }
   }
 
- 
-
-  async function delFruit(id){
+  async function delFruit(id) {
     const res = await axios({
-      method: "delete",
-      url: "http://116.105.26.48/api/auth/admin/deleteFruit/" + id,
-      headers:{
-        Authorization: "Bearer " + localStorage.getItem("Token"),
+      method: 'delete',
+      url: 'http://116.105.26.48/api/auth/admin/deleteFruit/' + id,
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('Token'),
       },
     });
-    if(res.data.status ==="Thành công !!!"){
-      alert("Thành công !!!");
+    if (res.data.status === 'Thành công !!!') {
+      alert('Thành công !!!');
     }
-    if(res.data.status ==="Thất bại !!!"){
-      alert("Thất bại !!!");
+    if (res.data.status === 'Thất bại !!!') {
+      alert('Thất bại !!!');
     }
   }
 
-   useEffect(() => {
-     getAllFruit();
-   }, [resData]);
+  useEffect(() => {
+    getAllFruit();
+  }, []);
 
   return (
-    <div className="card-gridd">
-      {resData.map((item) => {
-        return (
-          <div className="buying-item" key={item.id}>
-            <div className="img-wrapper">
-              <img
-                className="anh"
-                src={`http://116.105.26.48${item.image_url}`}
-              />
-            </div>
-            <div className="img-wrapper">
-              <h4 className="fixx">id </h4>
-              <h4 className="fixx">{item.id}</h4>
-            </div>
-            <div className="namee">
-              <h4 className="fixx">Tên </h4>
-              <h4 className="fixx">{item.fruit_name}</h4>
-            </div>
-            <div className="price">
-              <h4 className="fixx">Giá </h4>
-              <h4 className="fixx">{item.price}</h4>
-            </div>
-            <div className="amount">
-              <h4 className="fixx">Số lượng </h4>
-              <h4 className="fixx"> {item.amount}</h4>
-            </div>
-            <div className="total">
-              <h4 className="fixx">mo ta</h4>
-              <h4 className="fixx">{item.description}</h4>
-            </div>
-            <div className="total">
-              <h4 className="fixx">nhan hang</h4>
-              <h4 className="fixx">{item.brand}</h4>
-            </div>
-            <div className="total">
-              <Button type="button" className="fixx" onClick={()=>delFruit(`${item.id}`)}>X</Button>
-            </div>
-          </div>
-        );
-      })}
+    <div className="card-gridd" style={{paddingTop: '16px', paddingLeft: '10px'}}>
+      <Row gutter={16}>
+        {resData.map((item) => {
+          return (
+            <Col span={8}>
+              <Card
+               hoverable
+                title="Card title"
+                extra={
+                  <Button
+                    type="button"
+                    className="fixx"
+                    onClick={() => delFruit((`${item.id}`))}
+                  >
+                    X
+                  </Button>
+                }
+              >
+                <div className="img-wrapper">
+                  <img
+                    className="anh"
+                    src={`http://116.105.26.48${item.image_url}`}
+                    alt=""
+                  />
+                </div>
+                <div className="namee" >
+                  <h4 className="fixx" style={{width: '150px',textAlign: 'left', fontSize: "18px"}}>Tên: </h4>
+                  <h4 className="fixx">{item.fruit_name}</h4>
+                </div>
+                <div className="price" style={{display: 'flex', alignItems: 'center'}}>
+                  <h4 className="fixx" style={{width: '150px',textAlign: 'left', fontSize: "18px"}}>Giá:</h4>
+                  <h4 className="fixx" style={{width: '100%', color: '#007aff'}}>{item.price}</h4>
+                </div>
+                <div className="amount" style={{display: 'flex', alignItems: 'center'}}>
+                  <h4 className="fixx" style={{width: '150px',textAlign: 'left', fontSize: "18px"}}>Số lượng:</h4>
+                  <h4 className="fixx" style={{width: '100%', color: '#007aff'}}> {item.amount}</h4>
+                </div>
+                <div className="total " style={{display: 'flex', alignItems: 'center'}}>
+                  <h4 className="fixx" style={{width: '150px',textAlign: 'left', fontSize: "18px"}}>Mô Tả:</h4>
+                  <h4 className="fixx" style={{width: '100%', color: '#007aff'}}>{item.description}</h4>
+                </div>
+                <div className="total" style={{display: 'flex', alignItems: 'center'}}>
+                  <h4 className="fixx" style={{width: '150px',textAlign: 'left', fontSize: "18px"}}>Nhãn Hàng:</h4>
+                  <h4 className="fixx" style={{width: '100%', color: '#007aff'}}>{item.brand}</h4>
+                </div>
+              </Card>
+            </Col>
+          );
+        })}
+      </Row>
+      <div className="site-card-wrapper">
+      </div>
     </div>
   );
 }

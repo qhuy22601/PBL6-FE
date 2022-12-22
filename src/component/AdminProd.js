@@ -1,146 +1,193 @@
-import React, { useEffect, useState } from "react";
-import { Formik } from "formik";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
-import * as yup from "yup";
-import imageCompression from "browser-image-compression";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/esm/Container";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { RiLoginBoxLine } from "react-icons/ri";
-import Fruit from "./Fruit";
+import Grid from '@mui/material/Grid';
+import { Formik } from 'formik';
+import React, { useState } from 'react';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/esm/Container';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
-import "./styles/AdminProd.css";
+import './styles/AdminProd.css';
 
-import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import { Token } from "@mui/icons-material";
-import FruitList from "./FruitList";
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import FruitList from './FruitList';
 
+function AdminProd() {
+  const [img, setImg] = useState(null);
 
-function AdminProd(){
-
-   const [img, setImg] = useState(null);
-    let navigate = useNavigate();
-
-  // const schema = yup.object().shape({
-  //   fruit_name: yup.string().required(),
-  //   // image_url: yup.mixed(),
-  //   price:yup.string(),
-  //   description:yup.string(),
-  //   brand:yup.string(),
-  //   amount:yup.string()
-  // });
-
-
-  function upload(e){
+  function upload(e) {
     e.preventDefault();
-    console.log(e.target.files[0])
-    setImg(e.target.files[0])
+    console.log(e.target.files[0]);
+    setImg(e.target.files[0]);
   }
 
   async function createFruit(inputData) {
     const fdata = new FormData();
-    fdata.append("image_url", img);
-    fdata.append("fruit_name", inputData.fruit_name);
-    fdata.append("price", inputData.price);
-    fdata.append("brand", inputData.brand);
-    fdata.append("amount", inputData.amount);
-    fdata.append("description", inputData.description);
+    fdata.append('image_url', img);
+    fdata.append('fruit_name', inputData.fruit_name);
+    fdata.append('price', inputData.price);
+    fdata.append('brand', inputData.brand);
+    fdata.append('amount', inputData.amount);
+    fdata.append('description', inputData.description);
     const response = await axios({
-      method: "post",
-      url: "http://116.105.26.48/api/auth/admin/createFruit",
+      method: 'post',
+      url: 'http://116.105.26.48/api/auth/admin/createFruit',
       headers: {
-        Authorization: "Bearer " + localStorage.getItem("Token"),
-        'Content-Type': "multipart/form-data"
+        Authorization: 'Bearer ' + localStorage.getItem('Token'),
+        'Content-Type': 'multipart/form-data',
       },
       data: fdata,
     });
-    
-    if (response.data !== null && response.data.status === "Thất bại !!!") {
+
+    if (response.data !== null && response.data.status === 'Thất bại !!!') {
       showWarningToast(response.data.status);
-      console.log(response.data.status)
+      console.log(response.data.status);
     }
-    
-    if (response.data !== null && response.data.status === "Thành công !!!") {
-    console.log("thanh cong ne")
+
+    if (response.data !== null && response.data.status === 'Thành công !!!') {
+      console.log('thanh cong ne');
     }
   }
-  
+
   function showWarningToast(inputMessage) {
-    toast.warn("Invalid email", {
-      position: "bottom-center",
+    toast.warn('Invalid email', {
+      position: 'bottom-center',
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       draggable: true,
       progress: undefined,
-      theme: "colored",
+      theme: 'colored',
     });
-    console.log("toast");
+    console.log('toast');
   }
 
-  async function updateFruit(inputData){
+  async function updateFruit(inputData) {
     const response = await axios({
-      method:"post",
-      url:"116.105.26.48/api/auth/admin/updateFruit",
-      headers:{
-        Authorization: "Bearer "+ localStorage.getItem("Token"),
+      method: 'post',
+      url: '116.105.26.48/api/auth/admin/updateFruit',
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('Token'),
       },
-      data:{
+      data: {
         id: inputData.id,
         amount: inputData.amount,
-      }
+      },
     });
-    if(response.data.status === "Thành công !!!" && response.data!=null){
-      console.log("ok thanh cong update")
+    if (response.data.status === 'Thành công !!!' && response.data != null) {
+      console.log('ok thanh cong update');
     }
-    if(response.data.status === "Thất Bại !!!" && response.data!=null){
-      showWarningToast(response.data.status)
+    if (response.data.status === 'Thất Bại !!!' && response.data != null) {
+      showWarningToast(response.data.status);
     }
   }
 
-
-  
-    return(
-          <Container className="">
+  return (
+    <Container className="content-product">
       <ToastContainer />
       <div className="dual">
-      <Formik
-        // validationSchema={schema}
-        initialValues={{
-          fruit_name: "",
-          description: "",
-          price: "",
-          brand: "",
-          // image_url: "",
-          amount: "",
-          
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          createFruit(values);
-          setSubmitting(false);
-        }}
-      >
-        {({
-          handleSubmit,
-          handleChange,
-          handleBlur,
-          values,
-          touched,
-          isInValid,
-          errors,
-        }) => (
-          <Form
-            noValidate
-            onSubmit={handleSubmit}
-            className=""
-          >
-            <Grid>
+        <Formik
+          initialValues={{
+            fruit_name: '',
+            description: '',
+            price: '',
+            brand: '',
+            amount: '',
+          }}
+          onSubmit={(values, { setSubmitting }) => {
+            createFruit(values);
+            setSubmitting(false);
+          }}
+        >
+          {({
+            handleSubmit,
+            handleChange,
+            handleBlur,
+            values,
+            touched,
+            isInValid,
+            errors,
+          }) => (
+            <Form noValidate onSubmit={handleSubmit} className="">
+              <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingBottom: '12px'}}>
+                <Form.Label style={{paddingRight: '10px', width: '140px', textAlign: 'left', paddingLeft: '10px',}}>Name</Form.Label>
+                <TextField
+                  fullWidth
+                  id="fruit_name"
+                  name="fruit_name"
+                  label="fruit_name"
+                  value={values.fruit_name}
+                  onChange={handleChange}
+                  isInvalid={touched.fruit_name && errors.fruit_name}
+                />
+              </div>
+              <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingBottom: '12px'}}>
+                <Form.Label style={{paddingRight: '10px', width: '140px', textAlign: 'left', paddingLeft: '10px',}}>Price</Form.Label>
+                <TextField
+                  fullWidth
+                  id="price"
+                  name="price"
+                  label="price"
+                  value={values.price}
+                  onChange={handleChange}
+                  isInvalid={touched.price && errors.price}
+                />
+              </div>
+              <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingBottom: '12px'}}>
+                <Form.Label style={{paddingRight: '10px', width: '140px', textAlign: 'left', paddingLeft: '10px',}}>Description</Form.Label>
+                <TextField
+                  fullWidth
+                  id="description"
+                  name="description"
+                  label="description"
+                  value={values.description}
+                  onChange={handleChange}
+                  isInvalid={touched.description && errors.description}
+                />
+              </div>
+              <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingBottom: '12px'}}>
+                <Form.Label style={{paddingRight: '10px', width: '140px', textAlign: 'left', paddingLeft: '10px',}}>Brand</Form.Label>
+                <TextField
+                  fullWidth
+                  id="brand"
+                  name="brand"
+                  label="brand"
+                  value={values.brand}
+                  onChange={handleChange}
+                  isInvalid={touched.brand && errors.brand}
+                />
+              </div>
+              <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingBottom: '12px'}}>
+                <Form.Label style={{paddingRight: '10px', width: '140px', textAlign: 'left', paddingLeft: '10px',}}>Amount</Form.Label>
+                <TextField
+                  fullWidth
+                  id="amount"
+                  name="amount"
+                  label="amount"
+                  value={values.amount}
+                  onChange={handleChange}
+                  isInvalid={touched.amount && errors.amount}
+                />
+              </div>
+              <Form.Group>
+                    <Form.Label className="">
+                      Image
+                      <Form.Control
+                        className="inside"
+                        name="image"
+                        id="image"
+                        type="file"
+                        accept=".jpg, .jpeg, .png"
+                        onChange={upload}
+                      />
+                    </Form.Label>
+                  </Form.Group>
+                  <Button type="submit" variant="contained">
+                  Create
+                </Button>
+              {/* <Grid>
                 <Row>
                   <Form.Group
                     className=""
@@ -159,12 +206,7 @@ function AdminProd(){
                   </Form.Group>
                 </Row>
                 <Row>
-                  <Form.Group
-                    className=""
-                    as={Col}
-                    md="12"
-                    controlId="price"
-                  >
+                  <Form.Group className="" as={Col} md="12" controlId="price">
                     <Form.Label className="">Price</Form.Label>
                     <Form.Control
                       type="text"
@@ -193,12 +235,7 @@ function AdminProd(){
                   </Form.Group>
                 </Row>
                 <Row>
-                  <Form.Group
-                    className=""
-                    as={Col}
-                    md="12"
-                    controlId="brand"
-                  >
+                  <Form.Group className="" as={Col} md="12" controlId="brand">
                     <Form.Label className="">brand</Form.Label>
                     <Form.Control
                       type="text"
@@ -210,15 +247,8 @@ function AdminProd(){
                   </Form.Group>
                 </Row>
                 <Row>
-                  <Form.Group
-                    className=""
-                    as={Col}
-                    md="12"
-                    controlId="amount"
-                  >
-                    <Form.Label className="">
-                    Amount
-                    </Form.Label>
+                  <Form.Group className="" as={Col} md="12" controlId="amount">
+                    <Form.Label className="">Amount</Form.Label>
                     <Form.Control
                       type="text"
                       name="amount"
@@ -226,71 +256,54 @@ function AdminProd(){
                       onChange={handleChange}
                       isInvalid={touched.amount && errors.amount}
                     />
+                  </Form.Group>
 
-                    </Form.Group>
-                
-                    <Form.Group>
-                      <Form.Label className="">
-                        {" "}
-                        Image
-                        <Form.Control
-                          className="inside"
-                          name="image"
-                          id="image"
-                          type="file"
-                          accept=".jpg, .jpeg, .png"
-                          onChange={upload}
-                          
-                        />
-                        {/* <CloudUploadOutlinedIcon /> */}
-                      </Form.Label>
-                    </Form.Group>
-            
+                  <Form.Group>
+                    <Form.Label className="">
+                      Image
+                      <Form.Control
+                        className="inside"
+                        name="image"
+                        id="image"
+                        type="file"
+                        accept=".jpg, .jpeg, .png"
+                        onChange={upload}
+                      />
+                    </Form.Label>
+                  </Form.Group>
                 </Row>
                 <Button type="submit" variant="primary">
                   Create
                 </Button>
-            </Grid>
-          </Form>
-        )}
-      </Formik>
+              </Grid> */}
+            </Form>
+          )}
+        </Formik>
 
-
-      <Formik
-        // validationSchema={schema}
-        initialValues={{
-          id:"",
-          amount: "",
-          
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          updateFruit(values);
-          setSubmitting(false);
-        }}
-      >
-        {({
-          handleSubmit,
-          handleChange,
-          handleBlur,
-          values,
-          touched,
-          isInValid,
-          errors,
-        }) => (
-          <Form
-            noValidate
-            onSubmit={handleSubmit}
-            className=""
-          >
-            <Grid>
-               
+        <Formik
+          // validationSchema={schema}
+          initialValues={{
+            id: '',
+            amount: '',
+          }}
+          onSubmit={(values, { setSubmitting }) => {
+            updateFruit(values);
+            setSubmitting(false);
+          }}
+        >
+          {({
+            handleSubmit,
+            handleChange,
+            handleBlur,
+            values,
+            touched,
+            isInValid,
+            errors,
+          }) => (
+            <Form noValidate onSubmit={handleSubmit} className="">
+              <Grid>
                 <Row>
-                  <Form.Group
-                    className=""
-                    as={Col}
-                    md="12"
-                    controlId="id"
-                  >
+                  <Form.Group className="" as={Col} md="12" controlId="id">
                     <Form.Label className="">Id</Form.Label>
                     <Form.Control
                       type="text"
@@ -302,15 +315,8 @@ function AdminProd(){
                   </Form.Group>
                 </Row>
                 <Row>
-                  <Form.Group
-                    className=""
-                    as={Col}
-                    md="12"
-                    controlId="amount"
-                  >
-                    <Form.Label className="">
-                    Amount
-                    </Form.Label>
+                  <Form.Group className="" as={Col} md="12" controlId="amount">
+                    <Form.Label className="">Amount</Form.Label>
                     <Form.Control
                       type="text"
                       name="amount"
@@ -318,25 +324,21 @@ function AdminProd(){
                       onChange={handleChange}
                       isInvalid={touched.amount && errors.amount}
                     />
-
-                    </Form.Group>
-                
-                 
-            
+                  </Form.Group>
                 </Row>
                 <Button type="submit" variant="primary">
                   update
-              </Button>
-            </Grid>
-          </Form>
-        )}
-      </Formik>
+                </Button>
+              </Grid>
+            </Form>
+          )}
+        </Formik>
       </div>
       <div>
-          <FruitList/>
+        <FruitList />
       </div>
     </Container>
-    );
+  );
 }
 
 export default AdminProd;
