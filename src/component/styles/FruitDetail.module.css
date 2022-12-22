@@ -22,3 +22,45 @@
     float: right;
     padding: 5px;
 }
+.amountInput{
+    background: none;
+    outline: none;
+    border: 0;
+    position: relative;
+    z-index: 1;
+    transition: text-shadow .3s ease;
+    border: solid 1px #000;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 30px;
+    border-radius: 10px;
+    text-align: center;
+    }
+.decre{
+    height: 30px;
+    font-size: large;
+}
+.incre{
+    height: 30px;
+}
+.button{
+    margin-top: 10px;
+}
+.name{
+    font-weight: 600;
+    font-size: 50px;
+    text-transform: capitalize;
+}
+.desc{
+    font-size: 20px;
+    font-weight: 200px;
+}
+.brand{
+font-size: 30px;
+    font-weight: 200px;
+    text-transform: capitalize;
+}
+.price{
+    font-size: 30px;
+
+}

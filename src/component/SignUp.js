@@ -1,16 +1,11 @@
-import CloudUploadOutlinedIcon from "@mui/icons-material/CloudUploadOutlined";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 import axios from "axios";
-import imageCompression from "browser-image-compression";
 import { Formik } from "formik";
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
+import Button from "@mui/material/Button";
 import Container from "react-bootstrap/esm/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as yup from "yup";
@@ -152,99 +147,143 @@ function SignUp() {
             <Row className="mb-5 text-center">
               <h1 className="text-success">Sign Up</h1>
             </Row>
-            <Row>
-              <Form.Group
-                className={styles.formGroup}
-                as={Col}
-                md="12"
-                controlId="signupname"
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                paddingBottom: "12px",
+              }}
+            >
+              <Form.Label
+                style={{
+                  paddingRight: "10px",
+                  width: "140px",
+                  textAlign: "left",
+                  paddingLeft: "10px",
+                }}
               >
-                <Form.Label className={styles.formLabel}>Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="name"
-                  value={values.name}
-                  onChange={handleChange}
-                  isInvalid={touched.name && errors.name}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {/* Nhập Name */}
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
-            <Row>
-              <Form.Group
-                className={styles.formGroup}
-                as={Col}
-                md="12"
-                controlId="signupemail"
+                Name
+              </Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={values.name}
+                onChange={handleChange}
+                isInvalid={touched.name && errors.name}
+              />
+              <Form.Control.Feedback type="invalid">
+                {/* Nhập Name */}
+              </Form.Control.Feedback>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                paddingBottom: "12px",
+              }}
+            >
+              <Form.Label
+                style={{
+                  paddingRight: "10px",
+                  width: "140px",
+                  textAlign: "left",
+                  paddingLeft: "10px",
+                }}
               >
-                <Form.Label className={styles.formLabel}>Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  name="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  isInvalid={touched.email && errors.email}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {/* Nhập Email */}
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
+                Email
+              </Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+                isInvalid={touched.email && errors.email}
+              />
+              <Form.Control.Feedback type="invalid">
+                {/* Nhập Email */}
+              </Form.Control.Feedback>
+            </div>
 
-            <Row>
-              <Form.Group
-                className={styles.formGroup}
-                as={Col}
-                md="12"
-                controlId="signInPassword"
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                paddingBottom: "12px",
+              }}
+            >
+              <Form.Label
+                style={{
+                  paddingRight: "10px",
+                  width: "140px",
+                  textAlign: "left",
+                  paddingLeft: "10px",
+                }}
               >
-                <Form.Label className={styles.formLabel}>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  value={values.password}
-                  onChange={handleChange}
-                  isInvalid={touched.password && errors.password}
-                />
+                Password
+              </Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={values.password}
+                onChange={handleChange}
+                isInvalid={touched.password && errors.password}
+              />
 
-                <Form.Control.Feedback type="invalid">
-                  {/* Password */}
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
+              <Form.Control.Feedback type="invalid">
+                {/* Password */}
+              </Form.Control.Feedback>
+            </div>
 
-            <Row>
-              <Form.Group
-                className={styles.formGroup}
-                as={Col}
-                md="12"
-                controlId="signInPassword_comfirm"
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                paddingBottom: "12px",
+              }}
+            >
+              <Form.Label
+                style={{
+                  paddingRight: "10px",
+                  width: "140px",
+                  textAlign: "left",
+                  paddingLeft: "10px",
+                }}
               >
-                <Form.Label className={styles.formLabel}>
-                  Confirm Password
-                </Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password_confirmation"
-                  value={values.password_confirmation}
-                  onChange={handleChange}
-                  isInvalid={
-                    touched.password_confirmation &&
-                    errors.password_confirmation
-                  }
-                />
+                Confirm Password
+              </Form.Label>
+              <Form.Control
+                type="password"
+                name="password_confirmation"
+                value={values.password_confirmation}
+                onChange={handleChange}
+                isInvalid={
+                  touched.password_confirmation && errors.password_confirmation
+                }
+              />
 
-                <Form.Control.Feedback type="invalid">
-                  {/* Confirm Password */}
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
+              <Form.Control.Feedback type="invalid">
+                {/* Confirm Password */}
+              </Form.Control.Feedback>
+            </div>
 
-            <Button type="submit" variant="success">
+            <Button
+              style={{
+                marginBottom: "10px",
+              }}
+              type="submit"
+              variant="contained"
+            >
               Sign Up
             </Button>
+            <div>
+              <Link to="/signin">
+                <h4>Sign In</h4>
+              </Link>
+            </div>
           </Form>
         )}
       </Formik>

@@ -17,10 +17,7 @@ const items = [
   getItem('DashBoard', ''),
   getItem('Sản phẩm', 'product'),
   getItem('Khách Hàng', 'customer'),
-  getItem('Đơn Hàng', 'order'),
-  getItem('Thống Kê', 'statistic'),
-  getItem('Báo Cáo', 'report'),
-  getItem('Cài Đặt', 'setting'),
+
 ];
 
 function DashBoard() {
@@ -32,9 +29,7 @@ function DashBoard() {
     <div className="site-dashboard">
       <div className="container">
         <div className="nav">
-          <div className="logo">
-            <h2 className="text-logo">LOGO</h2>
-          </div>
+          
 
           <div className="nav-body">
             <Menu

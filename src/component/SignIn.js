@@ -5,11 +5,12 @@ import * as yup from "yup";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/esm/Container";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { RiLoginBoxLine } from "react-icons/ri";
-
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import styles from "./styles/SignIn.module.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
@@ -73,7 +74,7 @@ function SignIn() {
           email: "",
           password: "",
         }}
-        onSubmit={(values, {setSubmitting}) => {
+        onSubmit={(values, { setSubmitting }) => {
           postSignInInfo(values);
           setSubmitting(false);
         }}
@@ -95,58 +96,87 @@ function SignIn() {
             <Row className="mb-5 text-center">
               <h1 className="text-success">Sign In</h1>
             </Row>
-            <Row className="mb-3">
-              <Form.Group as={Col} md="12" controlId="signInEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  name="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  isInvalid={touched.email && errors.email}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {/* Please enter a valid email */}
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
-            <Row className="mb-3">
-              <Form.Group as={Col} md="12" controlId="signInPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  value={values.password}
-                  onChange={handleChange}
-                  isInvalid={touched.password && errors.password}
-                />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                paddingBottom: "12px",
+              }}
+            >
+              <Form.Label
+                style={{
+                  paddingRight: "10px",
+                  width: "140px",
+                  textAlign: "left",
+                  paddingLeft: "10px",
+                }}
+              >
+                Email
+              </Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+                isInvalid={touched.email && errors.email}
+              />
+              <Form.Control.Feedback type="invalid">
+                {/* Please enter a valid email */}
+              </Form.Control.Feedback>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                paddingBottom: "12px",
+              }}
+            >
+              <Form.Label
+                style={{
+                  paddingRight: "10px",
+                  width: "140px",
+                  textAlign: "left",
+                  paddingLeft: "10px",
+                }}
+              >
+                Password
+              </Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={values.password}
+                onChange={handleChange}
+                isInvalid={touched.password && errors.password}
+              />
 
-                <Form.Control.Feedback type="invalid">
-                  {/* Please enter your password */}
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Row>
-            <Button type="submit" variant="success">
+              <Form.Control.Feedback type="invalid">
+                {/* Please enter your password */}
+              </Form.Control.Feedback>
+            </div>
+            <Button
+              type="submit"
+              variant="contained"
+              style={{
+                marginBottom: "10px",
+              }}
+            >
               Sign In <RiLoginBoxLine />
             </Button>
             <div>
-            <Link to ="/forgot"> 
-                <h4>
-                  Forgot password
-                </h4>
-              </Link> 
+              <Link to="/forgot">
+                <h4>Forgot password</h4>
+              </Link>
             </div>
-            <div >
-              <Link to ="/signup"> 
-                <h4>
-                  SignUp
-                </h4>
-              </Link> 
+            <div>
+              <Link to="/signup">
+                <h4>Sign Up</h4>
+              </Link>
             </div>
           </Form>
         )}
       </Formik>
-      
     </Container>
   );
 }

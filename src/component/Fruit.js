@@ -6,11 +6,10 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Form from "react-bootstrap/Form";
 import { React, useEffect, useState, useContext } from "react";
-import { Button } from "react-bootstrap";
-import { RiCheckFill, RiUserFollowFill } from "react-icons/ri";
 import FruitDetail from "./FruitDetail";
 import {
   useNavigate,
@@ -20,6 +19,8 @@ import {
   Routes,
 } from "react-router-dom";
 import { createContext } from "react";
+import { auto } from "@popperjs/core";
+import { Center } from "@chakra-ui/layout";
 // import { useDispatch, useSelector } from "react-redux";
 
 function Fruit({data}) {
@@ -48,23 +49,6 @@ function Fruit({data}) {
     getAllFruit();
   },[]);
 
-  // const fruitId = useContext()
-  // async function getFruitById(id){
-  //   const res = await axios({
-  //     method: "GET",
-  //     url: "http://116.105.26.48/api/auth/admin/getFruitFollowId/" + id,
-  //     headers:{
-  //       Authorization: "Bearer " + localStorage.getItem("Token")
-  //     },
-  //   });
-  //   if(res.data !== null && res.data.status ==="Thất bại !!!"){
-  //     alert("Error");
-  //   }
-  //   if(res.data !== null && res.data.status === "Thành công !!!"){
-  //     navigate("/fruit-detail")
-  //   }
-  // };
-
 
   return (
     <div className="card-grid">
@@ -90,9 +74,10 @@ function Fruit({data}) {
                 {item.price}
               </Typography>
             </CardContent>
-            <CardActions>
+            <CardActions sx={{ justifyContent: "center"}}>
+              <Link to={`/fruit-detail/${item.id}`}>
               <Button size="small">Buy</Button>
-              <Button size="small">Add to cart</Button>
+              </Link>
             </CardActions>
           </Card>
         );

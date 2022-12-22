@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header"
-import "./styles/HomePage.css";
-import { Slide } from 'react-slideshow-image';
-// import './styles/Slide.css'
 import HeaderAfter from "./HeaderAfter"
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 import Fruit from './Fruit'
+import styles from "./styles/HomePage.module.css";
 
 function HomePage(){
 
@@ -22,20 +18,19 @@ const[checkSignin,setCheckSignin] =useState(localStorage.getItem("User"))
 //   });
 
     return(
-        <div className='container'>
-            <div className='head'>
+        <div className={styles.container}>
             {(checkSignin!==null)?(<HeaderAfter></HeaderAfter>):(<Header></Header>)}
-            </div>
+            
      
     
-        <div className="ima">
-            <img className='imggg' src="https://img.freepik.com/premium-vector/fresh-fruit-logo-design-mascot_157713-4.jpg?w=2000"></img>
+        <div className={styles.ima}>
+            <img className={styles.imggg} src="https://img.freepik.com/premium-vector/fresh-fruit-logo-design-mascot_157713-4.jpg?w=2000"></img>
         </div>
 
        
 
     {/* <div className='product'> */}
-       <div className="show">
+       <div className={styles.show}>
            
             <Fruit/>
         </div>

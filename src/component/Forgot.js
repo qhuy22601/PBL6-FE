@@ -5,10 +5,9 @@ import * as yup from "yup";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
+import Button from "@mui/material/Button";
 import Container from "react-bootstrap/esm/Container";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { RiLoginBoxLine } from "react-icons/ri";
 
 import styles from "./styles/SignIn.module.css";
 import axios from "axios";
@@ -52,15 +51,15 @@ function Forgot(){
         console.log("toast");
       }
 
-    return(
-        <Container fluid className={styles.container}>
+    return (
+      <Container fluid className={styles.container}>
         <ToastContainer />
         <Formik
           validationSchema={schema}
           initialValues={{
             email: "",
           }}
-          onSubmit={(values, {setSubmitting}) => {
+          onSubmit={(values, { setSubmitting }) => {
             submit(values);
             setSubmitting(false);
           }}
@@ -79,31 +78,48 @@ function Forgot(){
               onSubmit={handleSubmit}
               className={styles.formContainer}
             >
-              <Row className="mb-3">
-                <Form.Group as={Col} md="12" controlId="signInEmail">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control
-                    type="email"
-                    name="email"
-                    value={values.email}
-                    onChange={handleChange}
-                    isInvalid={touched.email && errors.email}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {/* Please enter a valid email */}
-                  </Form.Control.Feedback>
-                </Form.Group>
+              <Row
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingBottom: "12px",
+                }}
+              >
+                <Form.Label
+                  style={{
+                    paddingRight: "10px",
+                    width: "140px",
+                    textAlign: "left",
+                    paddingLeft: "10px",
+                  }}
+                >
+                  Email
+                </Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  isInvalid={touched.email && errors.email}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {/* Please enter a valid email */}
+                </Form.Control.Feedback>
               </Row>
-             
-              <Button type="submit" variant="success">
-                Send Mail 
+
+              <Button
+                type="submit"
+                variant="contained"
+                style={{
+                  marginTop: "10px",
+                }}
+              >
+                Send Mail
               </Button>
-           
-            
             </Form>
           )}
         </Formik>
-        
       </Container>
     );
 }

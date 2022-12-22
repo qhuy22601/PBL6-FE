@@ -9,10 +9,7 @@ import SupervisedUserCircleOutlinedIcon from "@mui/icons-material/SupervisedUser
 import WidgetsOutlinedIcon from "@mui/icons-material/WidgetsOutlined";
 import { IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Col, Container } from "react-bootstrap";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import SearchIcon from '@mui/icons-material/Search';
-import SearchInput from "../component/SearchInput";
+
 import "./styles/Header.css";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuIcon from '@mui/icons-material/Menu';

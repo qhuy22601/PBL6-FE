@@ -67,13 +67,13 @@ function AdminProd() {
   async function updateFruit(inputData) {
     const response = await axios({
       method: 'post',
-      url: '116.105.26.48/api/auth/admin/updateFruit',
+      url: 'http://116.105.26.48/api/auth/admin/updateFruit',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('Token'),
       },
       data: {
-        id: inputData.id,
-        amount: inputData.amount,
+        id: inputData.idd,
+        amount: inputData.amountt,
       },
     });
     if (response.data.status === 'Thành công !!!' && response.data != null) {
@@ -90,11 +90,11 @@ function AdminProd() {
       <div className="dual">
         <Formik
           initialValues={{
-            fruit_name: '',
-            description: '',
-            price: '',
-            brand: '',
-            amount: '',
+            fruit_name: "",
+            description: "",
+            price: "",
+            brand: "",
+            amount: "",
           }}
           onSubmit={(values, { setSubmitting }) => {
             createFruit(values);
@@ -107,12 +107,27 @@ function AdminProd() {
             handleBlur,
             values,
             touched,
-            isInValid,
             errors,
           }) => (
             <Form noValidate onSubmit={handleSubmit} className="">
-              <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingBottom: '12px'}}>
-                <Form.Label style={{paddingRight: '10px', width: '140px', textAlign: 'left', paddingLeft: '10px',}}>Name</Form.Label>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingBottom: "12px",
+                }}
+              >
+                <Form.Label
+                  style={{
+                    paddingRight: "10px",
+                    width: "140px",
+                    textAlign: "left",
+                    paddingLeft: "10px",
+                  }}
+                >
+                  Name
+                </Form.Label>
                 <TextField
                   fullWidth
                   id="fruit_name"
@@ -120,11 +135,26 @@ function AdminProd() {
                   label="fruit_name"
                   value={values.fruit_name}
                   onChange={handleChange}
-                  isInvalid={touched.fruit_name && errors.fruit_name}
                 />
               </div>
-              <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingBottom: '12px'}}>
-                <Form.Label style={{paddingRight: '10px', width: '140px', textAlign: 'left', paddingLeft: '10px',}}>Price</Form.Label>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingBottom: "12px",
+                }}
+              >
+                <Form.Label
+                  style={{
+                    paddingRight: "10px",
+                    width: "140px",
+                    textAlign: "left",
+                    paddingLeft: "10px",
+                  }}
+                >
+                  Price
+                </Form.Label>
                 <TextField
                   fullWidth
                   id="price"
@@ -132,11 +162,26 @@ function AdminProd() {
                   label="price"
                   value={values.price}
                   onChange={handleChange}
-                  isInvalid={touched.price && errors.price}
                 />
               </div>
-              <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingBottom: '12px'}}>
-                <Form.Label style={{paddingRight: '10px', width: '140px', textAlign: 'left', paddingLeft: '10px',}}>Description</Form.Label>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingBottom: "12px",
+                }}
+              >
+                <Form.Label
+                  style={{
+                    paddingRight: "10px",
+                    width: "140px",
+                    textAlign: "left",
+                    paddingLeft: "10px",
+                  }}
+                >
+                  Description
+                </Form.Label>
                 <TextField
                   fullWidth
                   id="description"
@@ -144,11 +189,26 @@ function AdminProd() {
                   label="description"
                   value={values.description}
                   onChange={handleChange}
-                  isInvalid={touched.description && errors.description}
                 />
               </div>
-              <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingBottom: '12px'}}>
-                <Form.Label style={{paddingRight: '10px', width: '140px', textAlign: 'left', paddingLeft: '10px',}}>Brand</Form.Label>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingBottom: "12px",
+                }}
+              >
+                <Form.Label
+                  style={{
+                    paddingRight: "10px",
+                    width: "140px",
+                    textAlign: "left",
+                    paddingLeft: "10px",
+                  }}
+                >
+                  Brand
+                </Form.Label>
                 <TextField
                   fullWidth
                   id="brand"
@@ -156,11 +216,26 @@ function AdminProd() {
                   label="brand"
                   value={values.brand}
                   onChange={handleChange}
-                  isInvalid={touched.brand && errors.brand}
                 />
               </div>
-              <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', paddingBottom: '12px'}}>
-                <Form.Label style={{paddingRight: '10px', width: '140px', textAlign: 'left', paddingLeft: '10px',}}>Amount</Form.Label>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingBottom: "12px",
+                }}
+              >
+                <Form.Label
+                  style={{
+                    paddingRight: "10px",
+                    width: "140px",
+                    textAlign: "left",
+                    paddingLeft: "10px",
+                  }}
+                >
+                  Amount
+                </Form.Label>
                 <TextField
                   fullWidth
                   id="amount"
@@ -168,114 +243,32 @@ function AdminProd() {
                   label="amount"
                   value={values.amount}
                   onChange={handleChange}
-                  isInvalid={touched.amount && errors.amount}
                 />
               </div>
-              <Form.Group>
-                    <Form.Label className="">
-                      Image
-                      <Form.Control
-                        className="inside"
-                        name="image"
-                        id="image"
-                        type="file"
-                        accept=".jpg, .jpeg, .png"
-                        onChange={upload}
-                      />
-                    </Form.Label>
-                  </Form.Group>
-                  <Button type="submit" variant="contained">
-                  Create
-                </Button>
-              {/* <Grid>
-                <Row>
-                  <Form.Group
-                    className=""
-                    as={Col}
-                    md="12"
-                    controlId="fruit_name"
-                  >
-                    <Form.Label className="">Name</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="fruit_name"
-                      value={values.fruit_name}
-                      onChange={handleChange}
-                      isInvalid={touched.fruit_name && errors.fruit_name}
-                    />
-                  </Form.Group>
-                </Row>
-                <Row>
-                  <Form.Group className="" as={Col} md="12" controlId="price">
-                    <Form.Label className="">Price</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="price"
-                      value={values.price}
-                      onChange={handleChange}
-                      isInvalid={touched.price && errors.price}
-                    />
-                  </Form.Group>
-                </Row>
-                <Row>
-                  <Form.Group
-                    className=""
-                    as={Col}
-                    md="12"
-                    controlId="description"
-                  >
-                    <Form.Label className="">Description</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="description"
-                      value={values.description}
-                      onChange={handleChange}
-                      isInvalid={touched.description && errors.description}
-                    />
-                  </Form.Group>
-                </Row>
-                <Row>
-                  <Form.Group className="" as={Col} md="12" controlId="brand">
-                    <Form.Label className="">brand</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="brand"
-                      value={values.brand}
-                      onChange={handleChange}
-                      isInvalid={touched.brand && errors.brand}
-                    />
-                  </Form.Group>
-                </Row>
-                <Row>
-                  <Form.Group className="" as={Col} md="12" controlId="amount">
-                    <Form.Label className="">Amount</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="amount"
-                      value={values.amount}
-                      onChange={handleChange}
-                      isInvalid={touched.amount && errors.amount}
-                    />
-                  </Form.Group>
-
-                  <Form.Group>
-                    <Form.Label className="">
-                      Image
-                      <Form.Control
-                        className="inside"
-                        name="image"
-                        id="image"
-                        type="file"
-                        accept=".jpg, .jpeg, .png"
-                        onChange={upload}
-                      />
-                    </Form.Label>
-                  </Form.Group>
-                </Row>
-                <Button type="submit" variant="primary">
-                  Create
-                </Button>
-              </Grid> */}
+              <Form.Group
+                style={{
+                  paddingRight: "10px",
+                  width: "140px",
+                  textAlign: "left",
+                  paddingLeft: "10px",
+                  marginBottom: "10px",
+                }}
+              >
+                <Form.Label className="">
+                  Image
+                  <Form.Control
+                    className="inside"
+                    name="image"
+                    id="image"
+                    type="file"
+                    accept=".jpg, .jpeg, .png"
+                    onChange={upload}
+                  />
+                </Form.Label>
+              </Form.Group>
+              <Button type="submit" variant="contained">
+                Create
+              </Button>
             </Form>
           )}
         </Formik>
@@ -283,8 +276,8 @@ function AdminProd() {
         <Formik
           // validationSchema={schema}
           initialValues={{
-            id: '',
-            amount: '',
+            idd: "",
+            amountt: "",
           }}
           onSubmit={(values, { setSubmitting }) => {
             updateFruit(values);
@@ -297,36 +290,66 @@ function AdminProd() {
             handleBlur,
             values,
             touched,
-            isInValid,
             errors,
           }) => (
             <Form noValidate onSubmit={handleSubmit} className="">
               <Grid>
-                <Row>
-                  <Form.Group className="" as={Col} md="12" controlId="id">
-                    <Form.Label className="">Id</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="id"
-                      value={values.id}
-                      onChange={handleChange}
-                      isInvalid={touched.id && errors.id}
-                    />
-                  </Form.Group>
+                <Row
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    paddingBottom: "12px",
+                  }}
+                >
+                  <Form.Label
+                    style={{
+                      paddingRight: "10px",
+                      width: "140px",
+                      textAlign: "left",
+                      paddingLeft: "10px",
+                    }}
+                  >
+                    Id
+                  </Form.Label>
+                  <TextField
+                    fullWidth
+                    id="idd"
+                    name="idd"
+                    label="id"
+                    value={values.idd}
+                    onChange={handleChange}
+                  />
                 </Row>
-                <Row>
-                  <Form.Group className="" as={Col} md="12" controlId="amount">
-                    <Form.Label className="">Amount</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="amount"
-                      value={values.amount}
-                      onChange={handleChange}
-                      isInvalid={touched.amount && errors.amount}
-                    />
-                  </Form.Group>
+                <Row
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    paddingBottom: "12px",
+                  }}
+                >
+                  <Form.Label
+                    style={{
+                      paddingRight: "10px",
+                      width: "140px",
+                      textAlign: "left",
+                      paddingLeft: "10px",
+                    }}
+                  >
+                    Amount
+                  </Form.Label>
+                  <TextField
+                    fullWidth
+                    id="amountt"
+                    name="amountt"
+                    label="amount"
+                    value={values.amountt}
+                    onChange={handleChange}
+                  />
+                 
                 </Row>
-                <Button type="submit" variant="primary">
+                <Button type="submit" variant="contained">
                   update
                 </Button>
               </Grid>

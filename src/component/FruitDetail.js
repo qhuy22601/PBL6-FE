@@ -2,16 +2,11 @@ import { useContext, useState, useEffect } from "react";
 import AppContext from "./Fruit";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
 import HeaderAfter from "./HeaderAfter";
 import Header from "./Header"
-
-import Typography from "@mui/material/Typography";
 import Form from "react-bootstrap/Form";
-import { Button } from "react-bootstrap";
+
 import styles from "./styles/FruitDetail.module.css";
 
 function FruitDetail() {
@@ -24,7 +19,7 @@ function FruitDetail() {
   async function getFruitById() {
     const res = await axios({
       method: "GET",
-      url: "http://116.105.26.48/api/auth/admin/getFruitFollowId/" + id,
+      url: "http://116.105.26.48/api/auth/getFruitFollowId/" + id,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("Token"),
       },
@@ -46,7 +41,26 @@ function FruitDetail() {
     setQuantity(e.target.value);
   }
 
-  function addToBag() {}
+async function addToBag() {
+  const res = await axios({
+    method: "post",
+    url: "http://116.105.26.48/api/auth/user/addFruitCart",
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("Token"),
+    },
+    data: {
+      fruit_id: id,
+      quantity: quantity,
+    },
+  });
+  if (res.data !== null && res.data.status === "Thất bại !!!") {
+    console.log(res.data.status);
+  }
+
+  if (res.data !== null && res.data.status === "Thành công !!!") {
+    console.log(res.data.status);
+  }
+}
 
   function onAddClicked() {
     setQuantity(quantity + 1);
@@ -60,7 +74,7 @@ function FruitDetail() {
 
   return (
     <div className={styles.container}>
-      <div className="head">
+      <div className={styles.head}>
         {checkSignin !== null ? <HeaderAfter></HeaderAfter> : <Header></Header>}
       </div>
       <div className={styles.columnImage}>
@@ -71,11 +85,18 @@ function FruitDetail() {
       </div>
       <div className={styles.columnDetail}>
         <div className={styles.name}>{data.fruit_name}</div>
-        <div className={styles.desc}>{data.description}</div>
-        <div className={styles.brand}>{data.brand}</div>
-        <div className={styles.price}>{data.price}</div>
+        <br />
+        {/* <div className={styles.desc}>{data.description}</div> */}
+        <div className={styles.brand}>Xuất xứ: {data.brand}</div>
+        <br />
+        <div className={styles.price}>{data.price} VNĐ/Kg</div>
+        <br />
         <div className={styles.amountForm}>
-          <Button className={styles.decre} onClick={onRemoveClicked}>
+          <Button
+            variant="outlined"
+            className={styles.decre}
+            onClick={onRemoveClicked}
+          >
             -
           </Button>
           <input
@@ -83,12 +104,23 @@ function FruitDetail() {
             value={quantity}
             onChange={onChange}
           ></input>
-          <Button className={styles.incre} onClick={onAddClicked}>
+          <Button
+            variant="outlined"
+            className={styles.incre}
+            onClick={onAddClicked}
+          >
             +
           </Button>
         </div>
+        <br />
         <div className={styles.button}>
-          <Button className={styles.addCart}>Add To Cart</Button>
+          <Button
+            variant="contained"
+            className={styles.addCart}
+            onClick={addToBag}
+          >
+            Add To Cart
+          </Button>
         </div>
       </div>
     </div>

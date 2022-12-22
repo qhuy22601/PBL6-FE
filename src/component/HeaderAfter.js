@@ -1,12 +1,5 @@
-import AppsIcon from "@mui/icons-material/Apps";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
-import ForumIcon from "@mui/icons-material/Forum";
+
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
-import SupervisedUserCircleOutlinedIcon from "@mui/icons-material/SupervisedUserCircleOutlined";
-import WidgetsOutlinedIcon from "@mui/icons-material/WidgetsOutlined";
-import { IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Col, Container } from "react-bootstrap";
 import { Link, Outlet, useNavigate } from "react-router-dom";
@@ -14,8 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import SearchInput from "../component/SearchInput";
 import "./styles/Header.css";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import MenuIcon from '@mui/icons-material/Menu';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+
 
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
@@ -29,25 +21,12 @@ import { IconContext } from 'react-icons';
 
 function HeaderAfter(props){
 
-
-    const [isHovering, setIsHovering] = useState(false);
-    const [isHovering1, setIsHovering1] = useState(false);
     const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
 
    
 
-  const handleMouseOver = () => {
- 
-    setIsHovering(!isHovering);
-    setIsHovering1(false);
-  };
-
-  const handleMouseOver1 = () => {
-    setIsHovering1(!isHovering1);
-    setIsHovering(false);
-  };
 
   const[checkSignin,setCheckSignin] =useState(localStorage.getItem("User"))
 
@@ -74,9 +53,9 @@ function HeaderAfter(props){
 
 
     return(
-      <div className="container">
+      <div className="containerrr">
         <div className="main">
-        <Container>
+        <Container className="con" style={{paddingRight:"0px", paddingTop:"0px"}}>
           <div className="header">
             <SearchIcon color="primary" fontSize="large"/>
             <SearchInput />
@@ -140,44 +119,6 @@ function HeaderAfter(props){
             </div>
           </div>
 </Container>    
-        </div>
-        <div className="menu">
-          <ul className="item-container">
-            <div className="item-nav">
-                <div>
-              <li className="item">Trang Chủ</li>
-              </div>
-              <KeyboardArrowDownIcon fontSize="small" style={styles.test}
-                  onClick={handleMouseOver}
-              >
-                </KeyboardArrowDownIcon>
-                <div className="popp">
-              {isHovering &&  <div className="pop">
-                  <h5>brand</h5>
-                  </div>}
-            </div>
-            </div>
-
-            <div className="item-nav">
-              <div>
-              <li className="item">Sản Phẩm</li>
-              </div>
-               <KeyboardArrowDownIcon fontSize="small" style={styles.test}
-                  onClick={handleMouseOver1}
-               >
-                  
-                </KeyboardArrowDownIcon>
-                <div className="popp">
-              {isHovering1 &&  <div className="pop">
-                  <h5>brand</h5>
-                  </div>}
-            </div>
-              </div>
-
-
-
-            
-          </ul>
         </div>
         </div>
     );
