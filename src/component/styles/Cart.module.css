@@ -12,7 +12,7 @@
     text-align: center;
 }
 
-.buying-item{
+.buying_item{
     border: 1px solid rgb(0, 0, 0);
     width: 80%;
     margin-left: auto;
@@ -30,7 +30,7 @@
 
 }
 
-.img-wrapper{
+.img_wrapper{
     border-right: 2px solid rgba(177, 40, 40, 0);
 }
 .namee{

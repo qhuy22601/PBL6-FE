@@ -47,7 +47,7 @@ function FruitList() {
 
   useEffect(() => {
     getAllFruit();
-  }, []);
+  },[]);
 
   return (
     <div className="card-gridd" style={{paddingTop: '16px', paddingLeft: '10px'}}>

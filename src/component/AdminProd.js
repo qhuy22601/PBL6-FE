@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 import './styles/AdminProd.css';
 
@@ -17,6 +18,7 @@ import FruitList from './FruitList';
 function AdminProd() {
   const [img, setImg] = useState(null);
 
+  let navigate = useNavigate()
   function upload(e) {
     e.preventDefault();
     console.log(e.target.files[0]);
@@ -48,6 +50,7 @@ function AdminProd() {
 
     if (response.data !== null && response.data.status === 'Thành công !!!') {
       console.log('thanh cong ne');
+      window.location.reload(false);
     }
   }
 
