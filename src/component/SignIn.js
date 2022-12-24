@@ -29,7 +29,7 @@ function SignIn() {
   async function postSignInInfo(inputData) {
     const response = await axios({
       method: "post",
-      url: "http://116.105.26.48/api/auth/login",
+      url: "http://116.105.26.48:8080/api/auth/login",
       data: {
         email: inputData.email,
         password: inputData.password,
@@ -47,7 +47,13 @@ function SignIn() {
       localStorage.setItem("User", response.data.name);
       localStorage.setItem("Email", response.data.email);
       localStorage.setItem("Token", response.data.access_token);
-      navigate("/");
+      if(response.data.email ==="vanthai22756@gmail.com"){
+        navigate("/dashboard");
+      }
+      else{
+
+        navigate("/");
+      }
     }
   }
 

@@ -36,7 +36,7 @@ function AppContainer() {
         <Route path="/fruit-detail/:id" element={<FruitDetail />} />
         <Route path="/user" element={<UserPage />} />
         <Route path="/product" element={<Product />} />
-        <Route path="/cart/:id" element={<ListCart/>}/>
+        <Route path="/listcart" element={<ListCart/>}/>
         <Route path="/dashboard" element={<DashBoard />}>
           <Route path="customer" element={<AdminCust />} />
           <Route path="order" element={<AdminOrder />} />

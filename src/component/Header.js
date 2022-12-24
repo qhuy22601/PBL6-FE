@@ -42,7 +42,7 @@ function Header(props){
       localStorage.removeItem("User");
       localStorage.removeItem("Email")
       localStorage.removeItem("Token")
-      navigate("/home")
+      navigate("/signin")
     }
 
   }
@@ -85,7 +85,7 @@ function Header(props){
                 </div>
 
                 <div className="iconButton">
-                  <Link to="/cart" className="iconButton">
+                  <Link to="/listcart" className="iconButton">
                     <ShoppingCartIcon fontSize="large" />
                   </Link>
                 </div>

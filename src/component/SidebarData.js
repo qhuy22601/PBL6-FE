@@ -3,7 +3,11 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 
-
+const click =() =>{
+  localStorage.removeItem("Token");
+  localStorage.removeItem("Email");
+  localStorage.removeItem("User");
+}
 
 export const SidebarData = [
   
@@ -13,12 +17,12 @@ export const SidebarData = [
     icon: <AiIcons.AiFillHome />,
     cName: 'nav-text'
   },
-  {
-    title: 'Main Page',
-    path: '/mainpage',
-    icon: <IoIcons.IoIosPaper />,
-    cName: 'nav-text'
-  },
+  // {
+  //   title: 'Main Page',
+  //   path: '/mainpage',
+  //   icon: <IoIcons.IoIosPaper />,
+  //   cName: 'nav-text'
+  // },
   {
     title: 'Cart',
     path: '/cart',
@@ -34,7 +38,8 @@ export const SidebarData = [
   },
   {
     title: 'Log Out',
-    path: '/home',
+    path: '/',
+    onclick: click(),
     icon: <FaIcons.FaEnvelopeOpenText />,
     cName: 'nav-text'
   }

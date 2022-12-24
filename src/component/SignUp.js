@@ -32,7 +32,7 @@ function SignUp() {
     console.log("click");
     const response = await axios({
       method: "post",
-      url: "http://116.105.26.48/api/auth/signup",
+      url: "http://116.105.26.48:8080/api/auth/signup",
       data: {
         name: inputData.name,
         email: inputData.email,

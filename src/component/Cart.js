@@ -1,182 +1,200 @@
-import Header from "./Header";
-import buy from '../cart.json'
-import React, { useState} from 'react';
-import './styles/Cart.css'
-import payment from "../payment.json"
-import { shouldForwardProp } from "@mui/styled-engine";
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import shipper from '../shipping.json'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import HeaderAfter from './HeaderAfter'
+import * as React from "react";
+import { Container, Form, Table } from "react-bootstrap";
+import styles from "./styles/Cart.module.css";
+import axios from "axios";
+import ImageListItem from "@mui/material/ImageListItem";
+import { useState, useEffect } from "react";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
+import { Button, TextField } from "@mui/material";
+import { Link } from "react-router-dom";
 
-function Cart(){
-
-    const [check, setCheck] = useState(false);
-    const [check1, setCheck1] = useState(false);
-    const[checkSignin,setCheckSignin] =useState(localStorage.getItem("User"))
-
-
-    const [show, setShow]= useState(false);
-    const [show1, setShow1]= useState(false);
-
-    const click = () =>{
-        
-        setShow(!show);
-        console.log("clicked");
-    }
-    const click1 = () =>{
-        
-        setShow1(!show1);
-        console.log("clicked");
+function Cart() {
+  const [total, setTotal] = useState(0);
+  const [data, setData] = useState([]);
+  const [address, setAddress] = useState("");
+  let i = 0;
+  async function getItemFromCart() {
+    const response = await axios({
+      method: "get",
+      url: "http://116.105.26.48:8080/api/auth/user/listFruitOfCart",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("Token"),
+      },
+    });
+    if (response.data !== null && response.data.status === "Thất bại !!!") {
+      console.log(response.data.status);
     }
 
-
-
-    const choose = ()=>{
-        setCheck(!check);
-        console.log("checked");
+    if (response.data !== null && response.data.status === "Thành công !!!") {
+      console.log("thanh cong ne");
+      setData(response.data.data);
+      for (let j = 0; j < response.data.data.length; j++) {
+        i = i + response.data.data[j].price * response.data.data[j].quantity;
+      }
+      setTotal(i);
+      console.log(total);
     }
-    
-    const choose1 = ()=>{
-        setCheck1(!check1);
-        console.log("checked");
+  }
+
+  async function order(inputData) {
+    const response = await axios({
+      method: "POST",
+      url: "http://116.105.26.48:8080/api/auth/user/updateOrder",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("Token"),
+      },
+      data: {
+        address: inputData.address,
+      },
+    });
+    if (response.data !== null && response.data.status === "Thất bại !!!") {
+      console.log(response.data.status);
     }
-    
 
-    return(
-        <div className="container">
-            {(checkSignin!==null)?(<HeaderAfter></HeaderAfter>):(<Header></Header>)}
-            <div className="title">
-                <h2>Giỏ hàng của bạn</h2>
-            </div>
-            <div className="prod">
-               
-            {buy.map(shoes=>{
-                return(
-                    <div className= "buying-item"  key={shoes.id}>
-                        <div className="img-wrapper">
-                            <img className="anh" src= {shoes.image}/>
-                        </div>
-                        <div className="namee">
+    if (response.data !== null && response.data.status === "Thành công !!!") {
+      console.log("thanh cong ne");
+    }
+  }
 
-                            <h4 className="fixx">Tên </h4>
-                            <h4 className="fixx">{shoes.name}</h4>
-                        </div>
-                        <div className="price">
-                            <h4 className="fixx">Giá </h4>
-                            <h4 className="fixx">{shoes.price}</h4>
-                        </div>
-                        <div className="amount">
-                            <h4 className="fixx">Số lượng </h4>
-                            <h4 className="fixx"> {shoes.amount} Kg</h4>
-                        </div>
-                        <div className="total">
-                            <h4 className="fixx">Thành tiền</h4>
-                            <h4 className="fixx">{shoes.price*shoes.amount} VND</h4>
-                        </div>
-                    </div>
-                )
-            })}
-        </div>
+  function handleChange(e) {
+    e.preventDefault();
+    setAddress(e.target.value);
+  }
 
-        <div className = "payment-shipping">
-            <div className = "payment">
-                 <h3>Phương thức thanh toán</h3>
-                 <KeyboardArrowDownIcon fontSize="small" className="bnn"
-                  onClick={click}
-                    >
-                </KeyboardArrowDownIcon>
+  useEffect(() => {
+    getItemFromCart();
+  }, []);
+
+  return (
+    <div className={styles.container}>
+      {/* <div style={{display:"flex"}}>
+      <ListItemText primary="Anh" />
+      <ListItemText primary="ten" />
+      <ListItemText primary="price" />
+      <ListItemText primary="so luong" />
+      </div> */}
+      <Table bordered hover responsive="sm" style={{ float: "left" }}>
+        <thead>
+          <tr style={{ marginBottom: "20px" }}>
+            <th
+              style={{
+                paddingLeft: "100px",
+                paddingRight: "100px",
+                paddingBottom: "25px",
+                paddingTop: "25px",
+              }}
+            >
+              Product Img
+            </th>
+            <th
+              style={{
+                paddingLeft: "100px",
+                paddingRight: "100px",
+                paddingTop: "25px",
+                paddingBottom: "25px",
+              }}
+            >
+              Name
+            </th>
+            <th
+              style={{
+                paddingLeft: "100px",
+                paddingRight: "100px",
+                paddingTop: "25px",
+                paddingBottom: "25px",
+              }}
+            >
+              Price
+            </th>
+            <th
+              style={{
+                paddingLeft: "100px",
+                paddingRight: "100px",
+                paddingTop: "25px",
+                paddingBottom: "25px",
+              }}
+            >
+              Quantity
+            </th>
+            <th
+              style={{
+                paddingLeft: "100px",
+                paddingRight: "100px",
+                paddingTop: "25px",
+                paddingBottom: "25px",
+              }}
+            >
+              Total
+            </th>
+          </tr>
+        </thead>
+        {total === 0 ? (
+          <div style={{ textAlign: "center" }}>
+            <h1>Chua co san pham nao trong gio hang</h1>
+            <Link to="/">Quay lai</Link>
+          </div>
+        ) : (
+          <tbody>
+            {data.map((item) => (
+              <tr style={{ borderBottom: "1px solid #000" }} key={item.id}>
+                <td style={{ paddingBottom: "25px", paddingTop: "25px" }}>
+                  <img
+                    src={`http://116.105.26.48:8080${item.image_url}`}
+                    alt=""
+                    style={{
+                      width: "150px",
+                      height: "150px",
+                      borderRadius: "20px",
+                    }}
+                  />
+                </td>
+                <td style={{ paddingBottom: "50px" }}>{item.fruit_name}</td>
+                <td style={{ paddingBottom: "50px" }}>{item.price}</td>
+                <td style={{ paddingBottom: "50px" }}>{item.quantity}</td>
+                <td style={{ paddingBottom: "50px" }}>
+                  {item.quantity * item.price} VND
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        )}
+      </Table>
+      <div styles={{ float: "right" }}>
+        <div style={{ paddingTop: "20px" }}>
+          <Form>
+            <h1>Thanh toan</h1>
+            <h2>Tong cong</h2>
+            <h3>{total} VND</h3>
+            <TextField
+              id="address"
+              name="address"
+              label="Adress"
+              value={address}
+              onChange={handleChange}
+              style={{
+                marginBottom: "20px",
+                float: "right",
+                paddingRight: "135px",
+              }}
+            />
+            <br />
+            <Button
+              variant="contained"
+              onClick={order}
+              style={{
+                marginBottom: "20px",
+                float: "right",
                 
-                 {show?(
-                <div className = "payment-show" 
-                // onMouseLeave={dis}
-                >
-                    {payment.map(method=>{
-                        return (
-                            <div className = "payment-method" key = {method.id}>
-                                <img className="jpg" src = {method.image}></img>
-                                <h5>{method.name}</h5>
-                                <h6 >{method.balance}</h6>
-
-                                {!check?
-                                 (
-                                 <div>
-                                 <CheckCircleOutlineIcon onClick={choose}  className="unchecked" fontSize=""/>
-                                 </div>
-                                 )
-                                
-                                :
-                                (
-                                <div>
-                                <CheckCircleIcon onClick={choose} classname = "checked" fontSize="" />
-                                </div>
-                                )
-                                }
-                               
-                            </div>
-
-                        )
-                    })}
-                </div>
-                 ):(
-                    <div></div>
-                 )}
-            </div>
-                {/* {show?(
-                        <div className="hien" onMouseLeave={dis}>true</div>
-                    ):
-                    (
-                        <div className="an">false</div>
-                    )} */}
-            <div className = "shipping">
-                        <h3>Shipping</h3>
-            
-                        <KeyboardArrowDownIcon fontSize="small" className="bnn"
-                  onClick={click1}
-                    >
-                </KeyboardArrowDownIcon>
-                
-                            {show1?(
-                            <div className = "payment-show" 
-                            // onMouseLeave={dis}
-                            >
-                                {shipper.map(method=>{
-                                    return (
-                                        <div className = "payment-method" key = {method.id}>
-                                            <img className="jpg" src = {method.image}></img>
-                                            <h5>{method.name}</h5>
-                                            <h6 >{method.price}</h6>
-                                            {!check1?(
-                                            <div>
-                                            <CheckCircleOutlineIcon onClick={choose1}  className="unchecked" fontSize=""/>
-                                            </div>
-                                            ):(
-                                            <div>
-                                            <CheckCircleIcon onClick={choose1} classname = "checked" fontSize="" />
-                                            </div>
-                                            )
-                                            }
-                                        
-                                        </div>
-
-                                    )
-                                })}
-
-                                
-                            
-                            </div>
-                            ):(
-                                <div></div>
-                            )}
-                                    
-            </div>
+              }}
+            >
+              Order
+            </Button>
+          </Form>
         </div>
-        <div className = "pay">
-            <button className = "buyy">Thanh toan</button>
-        </div>
-        </div> 
-    );
+      </div>
+    </div>
+  );
 }
 
 export default Cart;

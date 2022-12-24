@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 import './styles/AdminProd.css';
 
@@ -17,6 +18,7 @@ import FruitList from './FruitList';
 function AdminProd() {
   const [img, setImg] = useState(null);
 
+  // let navigate = useNavigate()
   function upload(e) {
     e.preventDefault();
     console.log(e.target.files[0]);
@@ -33,7 +35,7 @@ function AdminProd() {
     fdata.append('description', inputData.description);
     const response = await axios({
       method: 'post',
-      url: 'http://116.105.26.48/api/auth/admin/createFruit',
+      url: 'http://116.105.26.48:8080/api/auth/admin/createFruit',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('Token'),
         'Content-Type': 'multipart/form-data',
@@ -48,6 +50,7 @@ function AdminProd() {
 
     if (response.data !== null && response.data.status === 'Thành công !!!') {
       console.log('thanh cong ne');
+      // window.location.reload(false);
     }
   }
 
@@ -64,10 +67,25 @@ function AdminProd() {
     console.log('toast');
   }
 
+  async function checkFruit(){
+     const fdata = new FormData();
+     fdata.append("image", img);
+     const response = await axios({
+       mode: "no-cors",
+       method: "POST",
+       url: "http://ltmnhom4.tk:8000/upload-image/",
+       headers: {
+         "Content-Type": "multipart/form-data",
+       },
+       data: fdata,
+     });
+     alert(response.data)
+    }
+
   async function updateFruit(inputData) {
     const response = await axios({
       method: 'post',
-      url: 'http://116.105.26.48/api/auth/admin/updateFruit',
+      url: 'http://116.105.26.48:8080/api/auth/admin/updateFruit',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('Token'),
       },
@@ -269,6 +287,9 @@ function AdminProd() {
               <Button type="submit" variant="contained">
                 Create
               </Button>
+              <Button type="button" variant="contained" onClick={checkFruit}>
+                Check
+              </Button>
             </Form>
           )}
         </Formik>
@@ -347,7 +368,6 @@ function AdminProd() {
                     value={values.amountt}
                     onChange={handleChange}
                   />
-                 
                 </Row>
                 <Button type="submit" variant="contained">
                   update

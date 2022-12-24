@@ -16,7 +16,7 @@ function FruitList() {
   async function getAllFruit() {
     const response = await axios({
       method: 'get',
-      url: 'http://116.105.26.48/api/auth/getAllFruit',
+      url: 'http://116.105.26.48:8080/api/auth/getAllFruit',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('Token'),
       },
@@ -32,7 +32,7 @@ function FruitList() {
   async function delFruit(id) {
     const res = await axios({
       method: 'delete',
-      url: 'http://116.105.26.48/api/auth/admin/deleteFruit/' + id,
+      url: 'http://116.105.26.48:8080/api/auth/admin/deleteFruit/' + id,
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('Token'),
       },
@@ -47,7 +47,7 @@ function FruitList() {
 
   useEffect(() => {
     getAllFruit();
-  }, []);
+  },[]);
 
   return (
     <div className="card-gridd" style={{paddingTop: '16px', paddingLeft: '10px'}}>
@@ -71,7 +71,7 @@ function FruitList() {
                 <div className="img-wrapper">
                   <img
                     className="anh"
-                    src={`http://116.105.26.48${item.image_url}`}
+                    src={`http://116.105.26.48:8080${item.image_url}`}
                     alt=""
                   />
                 </div>

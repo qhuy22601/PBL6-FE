@@ -24,7 +24,7 @@ function Reset(){
       async function handleSubmit(e){
           const response = await axios({
               method: "post",
-              url: `http://116.105.26.48/api/auth/reset-password/${token}`,
+              url: `http://116.105.26.48:8080/api/auth/reset-password/${token}`,
               data:{
                 password: e.password,
               },
