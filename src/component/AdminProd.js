@@ -18,7 +18,7 @@ import FruitList from './FruitList';
 function AdminProd() {
   const [img, setImg] = useState(null);
 
-  // let navigate = useNavigate()
+  let navigate = useNavigate()
   function upload(e) {
     e.preventDefault();
     console.log(e.target.files[0]);
@@ -50,7 +50,7 @@ function AdminProd() {
 
     if (response.data !== null && response.data.status === 'Thành công !!!') {
       console.log('thanh cong ne');
-      // window.location.reload(false);
+      window.location.reload(false);
     }
   }
 
