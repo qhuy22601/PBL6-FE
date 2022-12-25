@@ -73,7 +73,7 @@ function AdminProd() {
      const response = await axios({
        mode: "no-cors",
        method: "POST",
-       url: "http://ltmnhom4.tk:8000/upload-image/",
+       url: "https://cnttlmkk19.online/upload-image/",
        headers: {
          "Content-Type": "multipart/form-data",
        },
