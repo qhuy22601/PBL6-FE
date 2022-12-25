@@ -32,7 +32,7 @@ function Fruit({data}) {
   async function getAllFruit() {
     const response = await axios({
       method: "get",
-      url: "http://116.105.26.48:8080/api/auth/getAllFruit",
+      url: "https://ltmnhom4.tk/api/auth/getAllFruit",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("Token"),
       },
@@ -62,7 +62,7 @@ function Fruit({data}) {
               <CardMedia
                 component="img"
                 height="140"
-                image={`http://116.105.26.48:8080${item.image_url}`}
+                image={`https://ltmnhom4.tk${item.image_url}`}
                 alt=""
               />
             </Link>

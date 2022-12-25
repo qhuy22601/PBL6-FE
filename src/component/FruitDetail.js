@@ -32,7 +32,7 @@ function FruitDetail() {
   async function getFruitById() {
     const res = await axios({
       method: "GET",
-      url: "http://116.105.26.48:8080/api/auth/getFruitFollowId/" + id,
+      url: "https://ltmnhom4.tk/api/auth/getFruitFollowId/" + id,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("Token"),
       },
@@ -57,7 +57,7 @@ function FruitDetail() {
 async function addToBag() {
   const res = await axios({
     method: "post",
-    url: "http://116.105.26.48:8080/api/auth/user/addFruitCart",
+    url: "https://ltmnhom4.tk/api/auth/user/addFruitCart",
     headers: {
       Authorization: "Bearer " + localStorage.getItem("Token"),
     },
@@ -95,7 +95,7 @@ async function addToBag() {
       <ToastContainer />
       <div className={styles.columnImage}>
         <img
-          src={`http://116.105.26.48:8080${data.image_url}`}
+          src={`https://ltmnhom4.tk${data.image_url}`}
           className={styles.img}
         ></img>
       </div>

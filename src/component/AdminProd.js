@@ -35,7 +35,7 @@ function AdminProd() {
     fdata.append('description', inputData.description);
     const response = await axios({
       method: 'post',
-      url: 'http://116.105.26.48:8080/api/auth/admin/createFruit',
+      url: 'https://ltmnhom4.tk/api/auth/admin/createFruit',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('Token'),
         'Content-Type': 'multipart/form-data',
@@ -85,7 +85,7 @@ function AdminProd() {
   async function updateFruit(inputData) {
     const response = await axios({
       method: 'post',
-      url: 'http://116.105.26.48:8080/api/auth/admin/updateFruit',
+      url: 'https://ltmnhom4.tk/api/auth/admin/updateFruit',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('Token'),
       },

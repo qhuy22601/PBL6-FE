@@ -30,7 +30,7 @@ function Cart() {
   async function getItemFromCart() {
     const response = await axios({
       method: "get",
-      url: "http://116.105.26.48:8080/api/auth/user/listFruitOfCart",
+      url: "https://ltmnhom4.tk/api/auth/user/listFruitOfCart",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("Token"),
       },
@@ -53,7 +53,7 @@ function Cart() {
   async function order(inputData) {
     const response = await axios({
       method: "POST",
-      url: "http://116.105.26.48:8080/api/auth/user/updateOrder",
+      url: "https://ltmnhom4.tk/api/auth/user/updateOrder",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("Token"),
       },
@@ -160,7 +160,7 @@ function Cart() {
               <tr style={{ borderBottom: "1px solid #000" }} key={item.id}>
                 <td style={{ paddingBottom: "25px", paddingTop: "25px" }}>
                   <img
-                    src={`http://116.105.26.48:8080${item.image_url}`}
+                    src={`https://ltmnhom4.tk${item.image_url}`}
                     alt=""
                     style={{
                       width: "150px",

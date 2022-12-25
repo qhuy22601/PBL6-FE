@@ -16,7 +16,7 @@ function FruitList() {
   async function getAllFruit() {
     const response = await axios({
       method: 'get',
-      url: 'http://116.105.26.48:8080/api/auth/getAllFruit',
+      url: 'https://ltmnhom4.tk/api/auth/getAllFruit',
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('Token'),
       },
@@ -32,7 +32,7 @@ function FruitList() {
   async function delFruit(id) {
     const res = await axios({
       method: 'delete',
-      url: 'http://116.105.26.48:8080/api/auth/admin/deleteFruit/' + id,
+      url: 'https://ltmnhom4.tk/api/auth/admin/deleteFruit/' + id,
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('Token'),
       },
@@ -71,7 +71,7 @@ function FruitList() {
                 <div className="img-wrapper">
                   <img
                     className="anh"
-                    src={`http://116.105.26.48:8080${item.image_url}`}
+                    src={`https://ltmnhom4.tk${item.image_url}`}
                     alt=""
                   />
                 </div>
