@@ -14,7 +14,7 @@ import Button from "@mui/material/Button";
 import styles from "./styles/SignIn.module.css";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-
+import 'react-toastify/dist/ReactToastify.css';
 
 function SignIn() {
   const [resData, setResData] = useState(null);
@@ -25,6 +25,18 @@ function SignIn() {
     email: yup.string().email().required(),
     password: yup.string().required(),
   });
+
+  function toastSuccess(message){
+    toast.success(message, {
+      position: toast.POSITION.TOP_RIGHT
+  });
+  }
+
+  function toastWarning(message){
+    toast.warning(message, {
+      position: toast.POSITION.TOP_RIGHT
+  });
+  }
 
   async function postSignInInfo(inputData) {
     const response = await axios({
@@ -37,13 +49,18 @@ function SignIn() {
     });
     
     if (response.data !== null && response.data.status === "Thất bại !!!") {
-      showWarningToast(response.data.status);
+      toastWarning(response.data.status);
       console.log(response.data.status)
+    }
+
+    if(response.data !==null && response.data.message === "email phải là một địa chỉ email hợp lệ."){
+      toastWarning(response.data.message);
+      console.log(response.data)
     }
     
     if (response.data !== null && response.data.status === "Thành công !!!") {
       setResData(response.data.status);
-      showWarningToast(response.data.status);
+      toastSuccess(response.data.status);
       localStorage.setItem("User", response.data.name);
       localStorage.setItem("Email", response.data.email);
       localStorage.setItem("Token", response.data.access_token);
@@ -57,19 +74,7 @@ function SignIn() {
     }
   }
 
-  function showWarningToast(inputMessage) {
-    toast.warn("Invalid email or password", {
-      position: "bottom-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-    console.log("toast");
-  }
+  
 
   return (
     <Container fluid className={styles.container}>
@@ -102,7 +107,7 @@ function SignIn() {
             <Row className="mb-5 text-center">
               <h1 className="text-success">Sign In</h1>
             </Row>
-            <div
+            <Row
               style={{
                 display: "flex",
                 flexDirection: "row",
@@ -123,6 +128,7 @@ function SignIn() {
               <Form.Control
                 type="email"
                 name="email"
+                required
                 value={values.email}
                 onChange={handleChange}
                 isInvalid={touched.email && errors.email}
@@ -130,8 +136,8 @@ function SignIn() {
               <Form.Control.Feedback type="invalid">
                 {/* Please enter a valid email */}
               </Form.Control.Feedback>
-            </div>
-            <div
+            </Row>
+            <Row
               style={{
                 display: "flex",
                 flexDirection: "row",
@@ -160,7 +166,7 @@ function SignIn() {
               <Form.Control.Feedback type="invalid">
                 {/* Please enter your password */}
               </Form.Control.Feedback>
-            </div>
+            </Row>
             <Button
               type="submit"
               variant="contained"

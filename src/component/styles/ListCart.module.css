@@ -37,7 +37,7 @@
   .show {
     width: 100%;
     justify-content: center;
-    display: flex;
+    display: block;
     text-align: center;
     /* margin-left:auto;
     margin-right:auto; */

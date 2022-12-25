@@ -2,18 +2,31 @@ import * as React from "react";
 import { Container, Form, Table } from "react-bootstrap";
 import styles from "./styles/Cart.module.css";
 import axios from "axios";
-import ImageListItem from "@mui/material/ImageListItem";
 import { useState, useEffect } from "react";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
 import { Button, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Cart() {
   const [total, setTotal] = useState(0);
   const [data, setData] = useState([]);
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState(null);
   let i = 0;
+
+  function toastSuccess(message){
+    toast.success(message, {
+      position: toast.POSITION.TOP_RIGHT
+  });
+  }
+
+  function toastWarning(message){
+    toast.warning(message, {
+      position: toast.POSITION.TOP_RIGHT
+  });
+  }
+
   async function getItemFromCart() {
     const response = await axios({
       method: "get",
@@ -27,7 +40,7 @@ function Cart() {
     }
 
     if (response.data !== null && response.data.status === "Thành công !!!") {
-      console.log("thanh cong ne");
+      console.log(response.data.status)
       setData(response.data.data);
       for (let j = 0; j < response.data.data.length; j++) {
         i = i + response.data.data[j].price * response.data.data[j].quantity;
@@ -48,12 +61,13 @@ function Cart() {
         address: inputData.address,
       },
     });
-    if (response.data !== null && response.data.status === "Thất bại !!!") {
-      console.log(response.data.status);
+    if (response.data !== null && address=== null ) {
+      toastWarning("Thất bại !!!")
     }
 
-    if (response.data !== null && response.data.status === "Thành công !!!") {
-      console.log("thanh cong ne");
+    if (response.data !== null && response.data.status === "Thành công !!!" && address!==null) {
+      toastSuccess(response.data.status)
+      window.location.reload(false);
     }
   }
 
@@ -62,6 +76,11 @@ function Cart() {
     setAddress(e.target.value);
   }
 
+ function  handle(event) {
+    if (address.length > 0){
+      toastWarning("Thất bại !!!")
+    }
+  }
   useEffect(() => {
     getItemFromCart();
   }, []);
@@ -74,13 +93,14 @@ function Cart() {
       <ListItemText primary="price" />
       <ListItemText primary="so luong" />
       </div> */}
+      <ToastContainer />
       <Table bordered hover responsive="sm" style={{ float: "left" }}>
         <thead>
           <tr style={{ marginBottom: "20px" }}>
             <th
               style={{
-                paddingLeft: "100px",
-                paddingRight: "100px",
+                paddingLeft: "50px",
+                paddingRight: "50px",
                 paddingBottom: "25px",
                 paddingTop: "25px",
               }}
@@ -89,8 +109,8 @@ function Cart() {
             </th>
             <th
               style={{
-                paddingLeft: "100px",
-                paddingRight: "100px",
+                paddingLeft: "50px",
+                paddingRight: "50px",
                 paddingTop: "25px",
                 paddingBottom: "25px",
               }}
@@ -99,8 +119,8 @@ function Cart() {
             </th>
             <th
               style={{
-                paddingLeft: "100px",
-                paddingRight: "100px",
+                paddingLeft: "50px",
+                paddingRight: "50px",
                 paddingTop: "25px",
                 paddingBottom: "25px",
               }}
@@ -109,8 +129,8 @@ function Cart() {
             </th>
             <th
               style={{
-                paddingLeft: "100px",
-                paddingRight: "100px",
+                paddingLeft: "50px",
+                paddingRight: "50px",
                 paddingTop: "25px",
                 paddingBottom: "25px",
               }}
@@ -119,8 +139,8 @@ function Cart() {
             </th>
             <th
               style={{
-                paddingLeft: "100px",
-                paddingRight: "100px",
+                paddingLeft: "50px",
+                paddingRight: "50px",
                 paddingTop: "25px",
                 paddingBottom: "25px",
               }}
@@ -182,6 +202,7 @@ function Cart() {
             <Button
               variant="contained"
               onClick={order}
+              disabled={!address}
               style={{
                 marginBottom: "20px",
                 float: "right",

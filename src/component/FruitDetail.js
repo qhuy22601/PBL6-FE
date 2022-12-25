@@ -6,7 +6,8 @@ import Button from "@mui/material/Button";
 import HeaderAfter from "./HeaderAfter";
 import Header from "./Header"
 import Form from "react-bootstrap/Form";
-
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import styles from "./styles/FruitDetail.module.css";
 
 function FruitDetail() {
@@ -15,6 +16,18 @@ function FruitDetail() {
 
   const [data, setData] = useState({});
   const [quantity, setQuantity] = useState(1);
+
+  function toastSuccess(message){
+    toast.success(message, {
+      position: toast.POSITION.TOP_RIGHT
+  });
+  }
+
+  function toastWarning(message){
+    toast.warning(message, {
+      position: toast.POSITION.TOP_RIGHT
+  });
+  }
 
   async function getFruitById() {
     const res = await axios({
@@ -25,7 +38,7 @@ function FruitDetail() {
       },
     });
     if (res.data !== null && res.data.status === "Thất bại !!!") {
-      alert("Error");
+      toastWarning(res.data.status)
     }
     if (res.data !== null && res.data.status === "Thành công !!!") {
       setData(res.data.data);
@@ -54,11 +67,13 @@ async function addToBag() {
     },
   });
   if (res.data !== null && res.data.status === "Thất bại !!!") {
-    console.log(res.data.status);
+    toastWarning(res.data.status);
   }
 
   if (res.data !== null && res.data.status === "Thành công !!!") {
-    console.log(res.data.status);
+    setQuantity(1);
+    toastSuccess(res.data.status);
+    
   }
 }
 
@@ -77,6 +92,7 @@ async function addToBag() {
       <div className={styles.head}>
         {checkSignin !== null ? <HeaderAfter></HeaderAfter> : <Header></Header>}
       </div>
+      <ToastContainer />
       <div className={styles.columnImage}>
         <img
           src={`http://116.105.26.48:8080${data.image_url}`}
