@@ -32,42 +32,19 @@ function SearchInput() {
       return;
     }
 
-    // const fetchApi = async () => {
-    //   setLoading(true);
-
-    //   const res = await searchService(debounced);
-    //   try {
-    //     setSearchShow(res.data);
-    //     setLoading(false);
-    //   } catch (error) {
-    //     setLoading(false);
-    //     console.log(error);
-    //   }
-    // };
-
-    // const request = axios.create({
-    //   headers: { Authenrization: localStorage.getItem("Token") },
-    // });
-
-    // request
-    //   .get(`/api/auth/users/search/${debounced}`)
-    //   .then((res) => console.log(res));
-
-    async function requestInfo() {
+    async function requestInfo(inputData) {
       const response = await axios({
-        method: "get",
-        url: `/api/auth/users/search/${debounced}`,
+        method: "post",
+        url: `https://ltmnhom4.tk/api/auth/searchFruit/${debounced}`,
         headers: {
-          Authorization: localStorage.getItem("Token"),
+          Authorization: "Bearer " + localStorage.getItem("Token"),
         },
       });
-      setSearchShow(response.data);
+      setSearchShow(response.data.data);
       return response;
     }
 
     requestInfo();
-
-    // fetchApi();
   }, [debounced]);
 
   const handleClear = () => {

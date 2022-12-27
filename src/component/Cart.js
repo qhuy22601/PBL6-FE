@@ -50,7 +50,7 @@ function Cart() {
     }
   }
 
-  async function order(inputData) {
+  async function order() {
     const response = await axios({
       method: "POST",
       url: "https://ltmnhom4.tk/api/auth/user/updateOrder",
@@ -58,7 +58,7 @@ function Cart() {
         Authorization: "Bearer " + localStorage.getItem("Token"),
       },
       data: {
-        address: inputData.address,
+        address: address,
       },
     });
     if (response.data !== null && address=== null ) {
@@ -76,11 +76,6 @@ function Cart() {
     setAddress(e.target.value);
   }
 
- function  handle(event) {
-    if (address.length > 0){
-      toastWarning("Thất bại !!!")
-    }
-  }
   useEffect(() => {
     getItemFromCart();
   }, []);

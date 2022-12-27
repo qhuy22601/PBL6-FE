@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import Header from './Header'
 import HeaderAfter from "./HeaderAfter"
 import styles from "./styles/UserPage.module.css";
+import Purchase from './Purchase';
 
-
-function UserPage(props){
+function UserPage(){
 
     const[checkSignin,setCheckSignin] =useState(localStorage.getItem("User"))
 
@@ -14,6 +14,10 @@ function UserPage(props){
         
         {(checkSignin!==null)?(<HeaderAfter></HeaderAfter>):(<Header></Header>)}
         
+        <Purchase/>
+
+
+
         </div>
        
     );

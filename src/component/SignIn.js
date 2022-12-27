@@ -20,7 +20,6 @@ function SignIn() {
   const [resData, setResData] = useState(null);
 
   let navigate = useNavigate();
-
   const schema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().required(),
@@ -48,8 +47,8 @@ function SignIn() {
       },
     });
     
-    if (response.data !== null && response.data.status === "Thất bại !!!") {
-      toastWarning(response.data.status);
+    if (response.data !== null && response.data.message === "Sai tài khoản hoặc mật khẩu") {
+      toastWarning(response.data.message);
       console.log(response.data.status)
     }
 

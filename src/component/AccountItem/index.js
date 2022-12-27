@@ -6,14 +6,19 @@ function AccountItem({ data }) {
   const cx = classNames.bind(styles);
   console.log(data);
   return (
-    <Link to={"/newsfeed/profile"} className={cx("info-wrapper")}>
-      <img className={cx("info-avatar")} src={data.avata} alt="hoa" />
+    <Link to={`fruit-detail/${data.id}`} className={cx("info-wrapper")}>
+      <img className={cx("info-avatar")} src={`https://ltmnhom4.tk${data.image_url}`} alt="hoa" />
       <div className={cx("info-user")}>
         <h4 className={cx("name")}>
-          <span>{`${data.firstName} ${data.lastName}`}</span>
-          {/* <span>Huy</span> */}
+          <span>{`${data.fruit_name}`}</span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+         <span className ={cx("price")}>{`${data.price} VNĐ/Kg`}</span>
+         
         </h4>
-        <p className={cx("user-name")}>{data.username}</p>
       </div>
     </Link>
   );
