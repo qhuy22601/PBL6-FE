@@ -76,7 +76,6 @@ function SearchInput() {
         render={(attrs) => (
           <div className={cx("search-results")} tabIndex="-1" {...attrs}>
             <PopperWrapper>
-              <h4 className={cx("search-accounts")}>Accounts</h4>
               {searchShow.map((item) => (
                 <AccountItem 
                 key={item.id}
