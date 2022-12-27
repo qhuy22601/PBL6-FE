@@ -80,6 +80,14 @@ function Cart() {
     getItemFromCart();
   }, []);
 
+  if  (total ==0 )
+    return(
+    <div style={{ textAlign: "center" }}>
+      <h1>Chua co san pham nao trong gio hang</h1>
+      <Link to="/">Quay lai</Link>
+    </div>
+  ) ;
+
   return (
     <div className={styles.container}>
       {/* <div style={{display:"flex"}}>
@@ -144,12 +152,6 @@ function Cart() {
             </th>
           </tr>
         </thead>
-        {total === 0 ? (
-          <div style={{ textAlign: "center" }}>
-            <h1>Chua co san pham nao trong gio hang</h1>
-            <Link to="/">Quay lai</Link>
-          </div>
-        ) : (
           <tbody>
             {data.map((item) => (
               <tr style={{ borderBottom: "1px solid #000" }} key={item.id}>
@@ -173,7 +175,7 @@ function Cart() {
               </tr>
             ))}
           </tbody>
-        )}
+       
       </Table>
       <div styles={{ float: "right" }}>
         <div style={{ paddingTop: "20px" }}>
