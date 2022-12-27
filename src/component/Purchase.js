@@ -3,6 +3,8 @@ import styles from "./styles/Purchase.module.css";
 import axios from "axios";
 import ListGroup from "react-bootstrap/ListGroup";
 import { dividerClasses } from "@mui/material";
+import { Card, Col, Row, Space, Table, Tag } from 'antd';
+const { Column, ColumnGroup } = Table;
 
 
 function Purchase() {
@@ -31,22 +33,19 @@ function Purchase() {
     }
   }
 
-  if(loading){
+  if(loading ==true){
     return (
         <div>Loading...</div>
     );
   }
- else{
+
   return (
-        <ListGroup>
-          {data.map((item) => {
-            <ListGroup.Item key={item.id}>
-              <h1>{item.id}</h1>
-              <image src={`https://ltmnhom4.tk${item.image_url}`}></image>
-            </ListGroup.Item>;
-          })}
-        </ListGroup>
+    <Table dataSource={data}>
+      <Column title="Order Id" dataIndex="id" key="id" />
+      <Column title="Order Date" dataIndex="date" key="date" />
+    <Column title="Address" dataIndex="address" key="address" />
+    <Column title="Total Bill" dataIndex="total_bill" key="total_bill" />
+  </Table>
   );
-}
 }
 export default Purchase;
