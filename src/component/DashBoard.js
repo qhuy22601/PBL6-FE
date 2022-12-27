@@ -16,7 +16,7 @@ function getItem(label, key, icon, children, type) {
 const items = [
   getItem('DashBoard', ''),
   getItem('Sản phẩm', 'product'),
-  getItem('Khách Hàng', 'customer'),
+  // getItem('Khách Hàng', 'customer'),
 
 ];
 

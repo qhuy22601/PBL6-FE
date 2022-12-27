@@ -56,6 +56,11 @@ function SignIn() {
       toastWarning(response.data.message);
       console.log(response.data)
     }
+
+    if (response.data !== null && response.data.status === "Thất bại !!!" && response.data.message === "password là bắt buộc.") {
+      toastWarning(response.data.message);
+      console.log(response.data);
+    }
     
     if (response.data !== null && response.data.status === "Thành công !!!") {
       setResData(response.data.status);
@@ -157,6 +162,7 @@ function SignIn() {
               <Form.Control
                 type="password"
                 name="password"
+                required
                 value={values.password}
                 onChange={handleChange}
                 isInvalid={touched.password && errors.password}
